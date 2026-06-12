@@ -224,7 +224,19 @@ export async function fetchSlots() {
 
 (async function boot() {
   initTabs();
-  await loadPresets();
+  try {
+    await loadPresets();
+  } catch {
+    // gallery without data is a dead app — own it, funny but useful
+    $("#view-gallery").innerHTML = `
+      <div class="placeholder sticker" style="margin-top:24px;">
+        <div class="big-emoji">🫠</div>
+        <h2>THE GALLERY ATE ITSELF</h2>
+        <p>couldn't load the fattened. check your signal.</p>
+        <button class="btn orange" style="margin-top:14px;" onclick="location.reload()">TRY AGAIN 🔄</button>
+      </div>`;
+    return;
+  }
   initHero();
   renderChips();
   renderGrid();

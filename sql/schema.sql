@@ -121,3 +121,77 @@ as $$
    where day = p_day
      and user_id = p_user;
 $$;
+
+-- ============================================================
+-- Phase 3: requests board
+-- ============================================================
+
+-- Per-visitor daily request submissions (rate limit)
+create table if not exists request_submissions (
+  day text not null,
+  user_id text not null,
+  count integer not null default 0,
+  primary key (day, user_id)
+);
+
+alter table request_submissions enable row level security;
+
+-- ------------------------------------------------------------
+-- One vote per visitor per request. Returns the new vote count,
+-- -1 if this visitor already voted, -2 if the request is gone.
+-- ------------------------------------------------------------
+create or replace function cast_vote(p_request uuid, p_voter text)
+returns integer
+language plpgsql
+security definer
+as $$
+declare
+  new_votes integer;
+begin
+  insert into request_votes (request_id, voter) values (p_request, p_voter)
+  on conflict do nothing;
+
+  if not found then
+    return -1;
+  end if;
+
+  update requests
+     set votes = votes + 1
+   where id = p_request
+  returning votes into new_votes;
+
+  if new_votes is null then
+    return -2;
+  end if;
+  return new_votes;
+end;
+$$;
+
+-- ------------------------------------------------------------
+-- Submission rate limit. Returns the new count, or -1 once the
+-- visitor hit the daily cap.
+-- ------------------------------------------------------------
+create or replace function take_request_slot(p_day text, p_user text, p_max integer)
+returns integer
+language plpgsql
+security definer
+as $$
+declare
+  new_count integer;
+begin
+  insert into request_submissions (day, user_id, count) values (p_day, p_user, 0)
+  on conflict (day, user_id) do nothing;
+
+  update request_submissions
+     set count = count + 1
+   where day = p_day
+     and user_id = p_user
+     and count < p_max
+  returning count into new_count;
+
+  if new_count is null then
+    return -1;
+  end if;
+  return new_count;
+end;
+$$;

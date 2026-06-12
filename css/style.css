@@ -577,6 +577,81 @@ button {
 .notify input:focus { outline: 3px solid var(--orange); outline-offset: 1px; }
 .notify .btn { font-size: 15px; padding: 12px 16px; }
 
+/* ---------- requests board ---------- */
+
+.request-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.request-form input {
+  flex: 1;
+  min-width: 0;
+  font: 600 15px var(--font-body);
+  padding: 12px 14px;
+  border: var(--border);
+  border-radius: 14px;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.request-form input:focus { outline: 3px solid var(--orange); outline-offset: 1px; }
+.request-form .btn { font-size: 15px; padding: 12px 16px; }
+
+.request-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.request-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 12px 12px 16px;
+}
+
+.request-text {
+  flex: 1;
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 1.25;
+  word-break: break-word;
+}
+
+.vote-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  padding: 9px 14px;
+  border: var(--border);
+  border-radius: 999px;
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+
+.vote-btn.voted {
+  background: var(--pink);
+  color: #fff;
+  -webkit-text-stroke: 0.5px var(--ink);
+  paint-order: stroke fill;
+  opacity: 1;
+}
+
+.vote-btn .count { min-width: 1.2em; text-align: center; }
+.vote-btn .count.bump { animation: bump 0.35s var(--spring); }
+
+@keyframes bump {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.55) rotate(6deg); }
+  100% { transform: scale(1); }
+}
+
 /* full-screen loading: the wait is part of the joke */
 
 .loading {

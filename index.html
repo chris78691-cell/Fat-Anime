@@ -131,10 +131,28 @@
 
     <!-- =================== REQUESTS =================== -->
     <section id="view-requests" class="view" hidden>
-      <div class="placeholder sticker">
-        <div class="big-emoji">🍩</div>
-        <h2>REQUEST BOARD LOADING</h2>
-        <p>soon you'll vote on who eats next. the board itself is still being fattened.</p>
+      <h2 class="section-title" style="margin-top:18px;">WHO EATS NEXT? 🍴</h2>
+
+      <form class="request-form sticker" id="request-form">
+        <input type="text" id="request-input" maxlength="80" required
+               placeholder="which character should get fattened next?"
+               autocomplete="off" enterkeyhint="send">
+        <button class="btn" type="submit">FEED 🍴</button>
+      </form>
+
+      <div id="request-list" class="request-list"></div>
+
+      <div class="placeholder sticker" id="requests-empty" hidden>
+        <div class="big-emoji">🦗</div>
+        <h2>NOBODY'S HUNGRY YET</h2>
+        <p>request the first victim. history will remember you.</p>
+      </div>
+
+      <div class="placeholder sticker" id="requests-error" hidden>
+        <div class="big-emoji">🫠</div>
+        <h2>THE BOARD FELL OVER</h2>
+        <p>too many requests in its arms. probably.</p>
+        <button class="btn orange" id="requests-retry" style="margin-top:14px;">TRY AGAIN 🔄</button>
       </div>
     </section>
 
@@ -185,5 +203,6 @@
 
   <script src="/js/app.js" type="module"></script>
   <script src="/js/generator.js" type="module"></script>
+  <script src="/js/requests.js" type="module"></script>
 </body>
 </html>
