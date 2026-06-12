@@ -20,17 +20,8 @@ export const GENERATION = {
   PRECHECK_MODEL: "gemini-2.5-flash",
 
   // ──────────────────────────────────────────────────────────
-  // MASTER FATTENING PROMPT
-  // TODO(owner): replace with the tested prompt — this placeholder
-  // keeps the pipeline working until the real one is pasted in.
+  // MASTER FATTENING PROMPT (owner-tested — edit only here)
   // ──────────────────────────────────────────────────────────
-  MASTER_PROMPT: [
-    "Redraw the character in this exact image as comically, charmingly fat:",
-    "a hugely round belly, chubby cheeks, thick arms and soft hands.",
-    "Keep EVERYTHING else identical — same art style, same line work and",
-    "colors, same pose and composition, same background, same outfit (now",
-    "straining and stretched at the seams), same expression, same identity.",
-    "The result must read as the same artwork, just inflated. Cute and",
-    "funny, never grotesque, never mean.",
-  ].join(" "),
+  MASTER_PROMPT:
+    "Keep the art style, colours, background and pose identical — only make the character extremely fat with a chubby face.",
 };
