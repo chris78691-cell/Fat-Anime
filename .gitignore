@@ -1,0 +1,15 @@
+# Raw source images — kept locally, never deployed
+assets/raw/
+
+# Secrets
+.env
+.env.*
+
+# Dependencies & build output
+node_modules/
+.vercel/
+dist/
+
+# OS noise
+Thumbs.db
+.DS_Store
