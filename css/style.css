@@ -23,6 +23,9 @@
 
 * { box-sizing: border-box; }
 
+/* author display rules must never beat the hidden attribute */
+[hidden] { display: none !important; }
+
 html { -webkit-text-size-adjust: 100%; }
 
 body {
@@ -448,7 +451,194 @@ button {
   text-align: center;
 }
 
+/* ---------- generator ---------- */
+
+.slots-pill.gen { margin-top: 14px; font-size: 16px; }
+
+.mode-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 6px;
+  margin-top: 16px;
+  border-radius: 16px;
+}
+
+.mode {
+  font-family: var(--font-display);
+  font-size: 15px;
+  padding: 11px 8px;
+  border-radius: 11px;
+  border: 3px solid transparent;
+  transition: transform 0.15s var(--spring);
+}
+
+.mode:active { transform: scale(0.95); }
+
+.mode.active {
+  background: var(--yellow);
+  border-color: var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.mode-hint {
+  margin: 8px 4px 0;
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.6;
+  text-align: center;
+}
+
+.dropzone {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 38px 20px;
+  margin-top: 16px;
+  border-style: dashed;
+  background: var(--card);
+  transition: transform 0.15s var(--spring);
+}
+
+.dropzone:active { transform: scale(0.97); }
+.dropzone .big-emoji { font-size: 44px; }
+.dropzone .dz-title { font-family: var(--font-display); font-size: 22px; }
+.dropzone .dz-sub { font-size: 13px; font-weight: 600; opacity: 0.6; }
+
+.preview-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.preview-wrap img {
+  max-height: 320px;
+  border-radius: var(--radius);
+  object-fit: contain;
+}
+
+#btn-generate { margin-top: 14px; }
+
+.fineprint {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.45;
+  margin: 10px 0 0;
+}
+
+.result-card {
+  margin-top: 16px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.result-card img { width: 100%; }
+
+.actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+/* sold-out */
+
+.countdown {
+  font-family: var(--font-display);
+  font-size: 44px;
+  margin-top: 12px;
+  color: var(--pink);
+  -webkit-text-stroke: 1.5px var(--ink);
+  paint-order: stroke fill;
+  text-shadow: 3px 3px 0 var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.notify {
+  margin-top: 16px;
+  padding: 16px;
+}
+
+.notify label { font-family: var(--font-display); font-size: 16px; display: block; margin-bottom: 10px; }
+
+.notify .row { display: flex; gap: 8px; }
+
+.notify input {
+  flex: 1;
+  min-width: 0;
+  font: 600 15px var(--font-body);
+  padding: 12px 14px;
+  border: var(--border);
+  border-radius: 14px;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.notify input:focus { outline: 3px solid var(--orange); outline-offset: 1px; }
+.notify .btn { font-size: 15px; padding: 12px 16px; }
+
+/* full-screen loading: the wait is part of the joke */
+
+.loading {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  text-align: center;
+  padding: 24px;
+  background: var(--bg);
+}
+
+.loading[hidden] { display: none; }
+
+.loading::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--ink) 1px, transparent 1.3px);
+  background-size: 20px 20px;
+  opacity: 0.05;
+}
+
+.blob {
+  width: 130px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink), var(--orange));
+  border: var(--border);
+  box-shadow: var(--shadow);
+  animation: gorge 60s ease-out forwards, chew 1.1s ease-in-out infinite;
+}
+
+.loading-caption {
+  font-family: var(--font-display);
+  font-size: 26px;
+  animation: pop 0.3s var(--spring);
+}
+
+.loading-sub { font-size: 13px; font-weight: 600; opacity: 0.55; margin: 0; }
+
 /* ---------- keyframes ---------- */
+
+@keyframes gorge {
+  /* slow, inevitable growth across the whole wait */
+  0% { transform: scale(0.8); }
+  100% { transform: scale(1.6); }
+}
+
+@keyframes chew {
+  0%, 100% { border-radius: 50% 50% 48% 52% / 52% 48% 50% 50%; }
+  50% { border-radius: 48% 52% 50% 50% / 50% 50% 52% 48%; }
+}
+
 
 @keyframes pop {
   0% { transform: scale(0.6); opacity: 0; }

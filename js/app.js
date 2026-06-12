@@ -101,7 +101,9 @@ function renderGrid() {
 
 let current = null;
 
-function openDetail(p) {
+export function getPresets() { return presets; }
+
+export function openDetail(p) {
   current = p;
   $("#stage-before").src = p.before;
   $("#stage-after").src = p.after;

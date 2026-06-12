@@ -71,10 +71,61 @@
 
     <!-- =================== GENERATOR =================== -->
     <section id="view-generate" class="view" hidden>
-      <div class="placeholder sticker">
-        <div class="big-emoji">🍳</div>
-        <h2>THE KITCHEN IS PREHEATING</h2>
-        <p>the fattening machine plugs in here next. browse the gallery while it warms up.</p>
+      <div class="slots-pill gen" id="slots-pill-gen">⚡ <span class="num" id="slots-num-gen">50</span>&nbsp;of <span id="slots-limit-gen">50</span> fattenings left today</div>
+
+      <!-- main flow -->
+      <div id="gen-main">
+        <div class="mode-toggle sticker" role="tablist" aria-label="output mode">
+          <button class="mode active" data-mode="full" role="tab" aria-selected="true">FULL IMAGE</button>
+          <button class="mode" data-mode="pfp" role="tab" aria-selected="false">PFP MODE</button>
+        </div>
+        <p class="mode-hint" id="mode-hint">fattens the whole picture, as-is</p>
+
+        <button class="dropzone sticker" id="dropzone">
+          <span class="big-emoji">📤</span>
+          <span class="dz-title">TAP TO UPLOAD</span>
+          <span class="dz-sub">your anime pic · jpg / png / webp · max 10MB</span>
+        </button>
+        <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" hidden>
+
+        <div class="preview-wrap" id="preview-wrap" hidden>
+          <img id="upload-preview" class="sticker" alt="your upload">
+          <button class="btn ghost" id="btn-clear">CHANGE PIC 🔄</button>
+        </div>
+
+        <button class="btn big" id="btn-generate" disabled>FATTEN IT 🍔</button>
+        <p class="fineprint">uploads are fattened in memory and never stored</p>
+      </div>
+
+      <!-- result -->
+      <div id="gen-result" hidden>
+        <div class="result-card sticker pop">
+          <img id="result-img" alt="your fattened character">
+        </div>
+        <div class="actions" style="margin-top:14px;">
+          <button class="btn" id="result-share">SHARE 📤</button>
+          <button class="btn ghost" id="result-download">SAVE ⬇️</button>
+        </div>
+        <button class="btn orange big" id="result-again" style="margin-top:10px;">FATTEN ANOTHER 🍔</button>
+      </div>
+
+      <!-- sold out -->
+      <div id="gen-soldout" hidden>
+        <div class="placeholder sticker">
+          <div class="big-emoji">🍔</div>
+          <h2>ALL 50 FATTENINGS EATEN TODAY</h2>
+          <p>the kitchen restocks at midnight UK time</p>
+          <div class="countdown" id="countdown">--:--:--</div>
+        </div>
+        <form class="notify sticker" id="notify-form">
+          <label class="display" for="notify-email">GET PINGED WHEN SLOTS OPEN</label>
+          <div class="row">
+            <input type="email" id="notify-email" required placeholder="you@email.com" autocomplete="email">
+            <button class="btn" type="submit">PING ME</button>
+          </div>
+        </form>
+        <h2 class="section-title">MEANWHILE, THE CLASSICS</h2>
+        <div class="grid" id="soldout-grid"></div>
       </div>
     </section>
 
@@ -87,6 +138,13 @@
       </div>
     </section>
 
+  </div>
+
+  <!-- =================== GENERATION LOADING OVERLAY =================== -->
+  <div class="loading" id="loading" hidden>
+    <div class="blob" id="blob">🍔</div>
+    <div class="loading-caption" id="loading-caption">feeding…</div>
+    <p class="loading-sub">a proper fattening takes 15–60 seconds.<br>screen-record this if you're bored.</p>
   </div>
 
   <!-- =================== DETAIL MODAL =================== -->
@@ -126,5 +184,6 @@
   </nav>
 
   <script src="/js/app.js" type="module"></script>
+  <script src="/js/generator.js" type="module"></script>
 </body>
 </html>
