@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>FAT ANIME — your favorite anime characters but THICC</title>
+  <meta name="description" content="48 fattened anime legends. Tap to inflate. Fatten your own — 50 a day, that's it.">
+  <meta name="theme-color" content="#FFF6E9">
+
+  <!-- Open Graph / Twitter — SITE_URL: update this one value when the domain is final -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="FAT ANIME">
+  <meta property="og:description" content="your favorite anime characters but THICC. tap to inflate 🍔">
+  <meta property="og:image" content="https://fatanime.vercel.app/assets/presets/goku-after.webp">
+  <meta property="og:url" content="https://fatanime.vercel.app">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FAT ANIME">
+  <meta name="twitter:description" content="your favorite anime characters but THICC. tap to inflate 🍔">
+  <meta name="twitter:image" content="https://fatanime.vercel.app/assets/presets/goku-after.webp">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍔</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Pick today's hero preset early so we can preload its two frames -->
+  <script>
+    (function () {
+      var SLUGS = ["goku","luffy","gojo","naruto","pikachu","saitama","levi","tanjiro","deku","ichigo","anya","frieza","zoro","denji","makima","sukuna","vegeta","eren","mikasa","sanji","sasuke","kakashi","itachi","charizard","nezuko","inosuke","yuji","megumi","power","yor","bakugo","todoroki","light","l","rem","subaru","killua","gon","sung-jin-woo","frieren","edward-elric","kaneki","jotaro","usagi","miku","kirito","asuka","spike"];
+      var day = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/London" }).format(new Date());
+      var epochDays = Math.floor(Date.parse(day) / 86400000);
+      window.__heroSlug = SLUGS[epochDays % SLUGS.length];
+      ["before", "after"].forEach(function (kind) {
+        var l = document.createElement("link");
+        l.rel = "preload";
+        l.as = "image";
+        l.href = "/assets/presets/" + window.__heroSlug + "-" + kind + ".webp";
+        document.head.appendChild(l);
+      });
+    })();
+  </script>
+
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="app">
+
+    <h1 class="wordmark">FAT<span class="alt">ANIME</span></h1>
+
+    <!-- =================== GALLERY (home) =================== -->
+    <section id="view-gallery" class="view">
+
+      <div class="hero sticker" id="hero" aria-label="before and after fattening preview">
+        <div class="frame">
+          <img class="before" id="hero-before" alt="" fetchpriority="high">
+          <img class="after" id="hero-after" alt="">
+        </div>
+        <div class="tag" id="hero-tag"></div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px; margin-top:16px;">
+        <div class="slots-pill" id="slots-pill-home">⚡ <span class="num" id="slots-num-home">50</span>&nbsp;of 50 fattenings left today</div>
+        <button class="btn big" data-goto="generate">FATTEN YOURS 🍔</button>
+      </div>
+
+      <h2 class="section-title">THE FATTENED ☆</h2>
+      <div class="chips" id="chips"></div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <!-- =================== GENERATOR =================== -->
+    <section id="view-generate" class="view" hidden>
+      <div class="placeholder sticker">
+        <div class="big-emoji">🍳</div>
+        <h2>THE KITCHEN IS PREHEATING</h2>
+        <p>the fattening machine plugs in here next. browse the gallery while it warms up.</p>
+      </div>
+    </section>
+
+    <!-- =================== REQUESTS =================== -->
+    <section id="view-requests" class="view" hidden>
+      <div class="placeholder sticker">
+        <div class="big-emoji">🍩</div>
+        <h2>REQUEST BOARD LOADING</h2>
+        <p>soon you'll vote on who eats next. the board itself is still being fattened.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- =================== DETAIL MODAL =================== -->
+  <div class="modal" id="modal" hidden>
+    <button class="close squish" id="modal-close" aria-label="close">✕</button>
+    <div class="sheet sticker" id="sheet">
+      <div class="stage" id="stage">
+        <img class="before" id="stage-before" alt="">
+        <img class="after" id="stage-after" alt="">
+        <div class="tap-hint" id="tap-hint">TAP TO FATTEN 👆</div>
+      </div>
+      <div class="meta">
+        <span class="name" id="detail-name"></span>
+        <span class="series" id="detail-series"></span>
+      </div>
+      <div class="actions">
+        <button class="btn" id="btn-share">SHARE 📤</button>
+        <button class="btn ghost" id="btn-download">SAVE ⬇️</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== TAB BAR =================== -->
+  <nav class="tabbar" aria-label="main">
+    <button class="tab active" data-tab="gallery" aria-label="Gallery">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg>
+      GALLERY
+    </button>
+    <button class="tab fatten" data-tab="generate" aria-label="Fatten">
+      <span class="bubble">🍔</span>
+      FATTEN
+    </button>
+    <button class="tab" data-tab="requests" aria-label="Requests">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M21 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 3V11.5a7.5 7.5 0 0 1 7.5-7.5h3A7.5 7.5 0 0 1 21 11.5z"/></svg>
+      REQUESTS
+    </button>
+  </nav>
+
+  <script src="/js/app.js" type="module"></script>
+</body>
+</html>

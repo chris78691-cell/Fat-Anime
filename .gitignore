@@ -13,3 +13,6 @@ dist/
 # OS noise
 Thumbs.db
 .DS_Store
+
+# Local dev tooling
+.claude/
