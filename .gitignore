@@ -16,3 +16,4 @@ Thumbs.db
 
 # Local dev tooling
 .claude/
+tmp/

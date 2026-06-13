@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1700" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7ec5ff"/>
+      <stop offset="0.42" stop-color="#bfe4ff"/>
+      <stop offset="0.72" stop-color="#ffe7d6"/>
+      <stop offset="1" stop-color="#ffd6e8"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.74" cy="0.20" r="0.5">
+      <stop offset="0" stop-color="#fffdf3" stop-opacity="0.95"/>
+      <stop offset="0.35" stop-color="#fff3d6" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#fff3d6" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDev="16"/>
+    </filter>
+    <filter id="softer" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDev="34"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1700" fill="url(#sky)"/>
+  <rect width="1200" height="1700" fill="url(#sun)"/>
+
+  <!-- soft god rays from the sun -->
+  <g fill="#fffaf0" opacity="0.16" filter="url(#softer)">
+    <polygon points="888,340 1300,-120 1500,300 1020,520"/>
+    <polygon points="888,340 1180,720 760,980 720,560"/>
+    <polygon points="888,340 1340,560 1180,980 980,640"/>
+  </g>
+
+  <!-- layered soft clouds (blurred ellipse clusters) -->
+  <g fill="#ffffff" filter="url(#soft)">
+    <g opacity="0.9">
+      <ellipse cx="240" cy="300" rx="170" ry="58"/>
+      <ellipse cx="360" cy="270" rx="130" ry="62"/>
+      <ellipse cx="150" cy="330" rx="110" ry="48"/>
+    </g>
+    <g opacity="0.8">
+      <ellipse cx="980" cy="520" rx="200" ry="60"/>
+      <ellipse cx="1120" cy="500" rx="140" ry="56"/>
+      <ellipse cx="860" cy="545" rx="120" ry="46"/>
+    </g>
+    <g opacity="0.7">
+      <ellipse cx="520" cy="700" rx="220" ry="60"/>
+      <ellipse cx="700" cy="680" rx="150" ry="58"/>
+    </g>
+    <g opacity="0.55">
+      <ellipse cx="300" cy="1080" rx="260" ry="62"/>
+      <ellipse cx="980" cy="1180" rx="240" ry="60"/>
+    </g>
+  </g>
+
+  <!-- low warm haze near the bottom horizon -->
+  <rect x="0" y="1280" width="1200" height="420" fill="#ffd9c2" opacity="0.35" filter="url(#softer)"/>
+
+  <!-- soft bokeh light motes -->
+  <g fill="#ffffff" filter="url(#soft)">
+    <circle cx="180" cy="620" r="20" opacity="0.5"/>
+    <circle cx="1040" cy="820" r="26" opacity="0.45"/>
+    <circle cx="640" cy="980" r="16" opacity="0.5"/>
+    <circle cx="420" cy="480" r="14" opacity="0.5"/>
+    <circle cx="900" cy="1320" r="22" opacity="0.4"/>
+  </g>
+</svg>
