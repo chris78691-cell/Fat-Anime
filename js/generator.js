@@ -43,7 +43,7 @@ function userId() {
 
 const HINTS = {
   full: "fattens the whole picture, as-is",
-  pfp: "square-cropped for Discord / X avatars (800×800)",
+  pfp: "square-cropped for TikTok / Insta / Discord / X avatars",
 };
 
 function initModes() {

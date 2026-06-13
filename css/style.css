@@ -749,6 +749,59 @@ button {
   50% { transform: scale(1.06); }
 }
 
+/* ============================================================
+   Desktop / tablet dressing. The phone column IS the app — on
+   bigger screens it floats as a phone-shaped sticker over a
+   sunburst sheet. Nothing in here touches viewports < 768px.
+   ============================================================ */
+
+@media (min-width: 768px) {
+  body {
+    background:
+      repeating-conic-gradient(from 0deg at 50% 42%, #FFEBC9 0deg 8deg, var(--bg) 8deg 16deg);
+  }
+
+  .app {
+    background: var(--bg);
+    margin: 28px auto;
+    height: calc(100dvh - 56px);
+    min-height: calc(100dvh - 56px); /* beat the base min-height: 100dvh */
+    overflow-y: auto;
+    scrollbar-width: none;
+    border: var(--border);
+    border-radius: 36px;
+    box-shadow: 10px 10px 0 var(--ink);
+  }
+
+  .app::-webkit-scrollbar { display: none; }
+
+  /* tab bar docks onto the frame's bottom edge */
+  .tabbar {
+    bottom: 28px;
+    border: var(--border);
+    border-radius: 0 0 33px 33px;
+  }
+
+  .toast { bottom: calc(var(--tabbar-h) + 44px); }
+}
+
+/* mouse users get a little lift; touch devices never match this */
+@media (hover: hover) {
+  .card, .vote-btn { transition: transform 0.15s var(--spring), box-shadow 0.15s var(--spring); }
+
+  .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+  .btn:active { transform: translate(3px, 3px) scale(0.93); box-shadow: 1px 1px 0 var(--ink); }
+
+  .card:hover, .chip:hover, .vote-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+
+  .tab:hover { opacity: 0.85; }
+  .tab.active:hover, .tab.fatten:hover { opacity: 1; }
+  .tab.fatten:hover .bubble { transform: scale(1.08); }
+}
+
 /* ---------- reduced motion ---------- */
 
 @media (prefers-reduced-motion: reduce) {

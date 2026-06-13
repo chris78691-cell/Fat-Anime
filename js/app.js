@@ -20,6 +20,7 @@ function switchTab(name) {
   for (const [tab, sel] of Object.entries(views)) $(sel).hidden = tab !== name;
   document.querySelectorAll(".tab").forEach((b) => b.classList.toggle("active", b.dataset.tab === name));
   window.scrollTo({ top: 0 });
+  $(".app").scrollTop = 0; // desktop: the app column scrolls internally
   document.dispatchEvent(new CustomEvent("tabchange", { detail: name }));
 }
 
