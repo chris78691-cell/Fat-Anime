@@ -34,13 +34,23 @@ html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
-  background: var(--bg);
-  background-image: var(--sky-grad);
-  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--font-body);
   line-height: 1.45;
   overscroll-behavior-y: none;
+  /* anime sky: scattered sakura blossoms + soft clouds + a smooth
+     blue→lavender→pink gradient (lavender mid-stop bridges the hues so
+     there's no hard two-tone band). One bg for the whole page = no clash. */
+  background-color: #ffe6f0;
+  background-image:
+    url("/assets/bg-sakura.svg"),
+    radial-gradient(58% 38% at 16% 9%, rgba(255, 255, 255, 0.80), transparent 62%),
+    radial-gradient(46% 30% at 86% 15%, rgba(255, 255, 255, 0.70), transparent 62%),
+    radial-gradient(64% 40% at 50% 99%, rgba(255, 255, 255, 0.55), transparent 60%),
+    linear-gradient(180deg, #cdeafe 0%, #efe6ff 46%, #ffe1ee 100%);
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 220px 220px, auto, auto, auto, auto;
+  background-attachment: fixed;
 }
 
 img { display: block; max-width: 100%; }
@@ -178,6 +188,16 @@ button {
 .petals i:nth-child(8) { left: 82%; width: 15px; height: 15px; animation-duration: 9.5s; animation-delay: 3.6s; }
 .petals i:nth-child(9) { left: 90%; width: 13px; height: 13px; animation-duration: 11.5s; animation-delay: 1.1s; }
 .petals i:nth-child(10){ left: 96%; width: 10px; height: 10px; animation-duration: 15s; animation-delay: 6s; opacity: 0.55; }
+.petals i:nth-child(11){ left: 11%; width: 14px; height: 14px; animation-duration: 10.5s; animation-delay: 2.7s; }
+.petals i:nth-child(12){ left: 33%; width: 11px; height: 11px; animation-duration: 13.5s; animation-delay: 4.1s; opacity: 0.6; }
+.petals i:nth-child(13){ left: 55%; width: 16px; height: 16px; animation-duration: 9.2s;  animation-delay: 1.9s; }
+.petals i:nth-child(14){ left: 66%; width: 12px; height: 12px; animation-duration: 12.2s; animation-delay: 5.5s; }
+.petals i:nth-child(15){ left: 78%; width: 14px; height: 14px; animation-duration: 10.8s; animation-delay: 3.3s; opacity: 0.65; }
+.petals i:nth-child(16){ left: 88%; width: 10px; height: 10px; animation-duration: 14.5s; animation-delay: 0.5s; opacity: 0.55; }
+
+/* a few petals in white and sky-blue for variety */
+.petals i:nth-child(3n) { background: linear-gradient(135deg, #ffffff, #ffe3ef); }
+.petals i:nth-child(5n) { background: linear-gradient(135deg, #e7f3ff, #bfe0ff); }
 
 .section-title {
   font-family: var(--font-display);
@@ -869,15 +889,10 @@ button {
    ============================================================ */
 
 @media (min-width: 768px) {
-  body {
-    background:
-      repeating-conic-gradient(from 0deg at 50% 40%, #ffe0ee 0deg 7deg, #dbefff 7deg 14deg);
-    background-attachment: fixed;
-  }
-
+  /* The phone frame is a faint frosted panel over the SAME page-wide
+     background, so the sky flows through it — no blue-block-on-pink clash. */
   .app {
-    background: var(--bg);
-    background-image: var(--sky-grad);
+    background: rgba(255, 255, 255, 0.18);
     margin: 28px auto;
     height: calc(100dvh - 56px);
     min-height: calc(100dvh - 56px); /* beat the base min-height: 100dvh */
