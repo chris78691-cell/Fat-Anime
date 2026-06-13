@@ -109,25 +109,68 @@ function downscale(file, maxSide) {
   });
 }
 
-/* ---------------- the loading experience ---------------- */
+/* ---------------- the loading experience ----------------
+   A slideshow of random presets inflating + a striped progress
+   bar that fills asymptotically (the real clock is Google's). */
 
 let captionTimer = null;
+let slideTimer = null;
+let barTimer = null;
 
 function showLoading() {
   $("#loading").hidden = false;
   document.body.style.overflow = "hidden";
+
+  // rotating captions
   let i = 0;
   $("#loading-caption").textContent = CAPTIONS[0];
   captionTimer = setInterval(() => {
     i = (i + 1) % CAPTIONS.length;
     $("#loading-caption").textContent = CAPTIONS[i];
   }, 2400);
+
+  // shuffled preset slideshow: before beat → inflate → next
+  const pool = [...getPresets()].sort(() => Math.random() - 0.5);
+  const stage = $("#load-stage");
+  let n = 0;
+  const showNext = () => {
+    const p = pool[n % pool.length];
+    n++;
+    stage.classList.remove("fat");
+    $("#load-before").src = p.before;
+    $("#load-after").src = p.after;
+    slideTimer = setTimeout(() => {
+      stage.classList.add("fat");
+      slideTimer = setTimeout(showNext, 1900);
+    }, 1100);
+  };
+  if (pool.length) showNext();
+
+  // fake-but-honest progress: quick start, then crawls toward ~94%
+  const fill = $("#loadbar-fill");
+  fill.style.width = "0%";
+  const start = Date.now();
+  barTimer = setInterval(() => {
+    const t = (Date.now() - start) / 1000;
+    fill.style.width = `${(94 * (1 - Math.exp(-t / 22))).toFixed(1)}%`;
+  }, 300);
 }
 
-function hideLoading() {
-  $("#loading").hidden = true;
-  document.body.style.overflow = "";
+function hideLoading(success) {
   clearInterval(captionTimer);
+  clearTimeout(slideTimer);
+  clearInterval(barTimer);
+  const close = () => {
+    $("#loading").hidden = true;
+    document.body.style.overflow = "";
+  };
+  if (success) {
+    // let the bar visibly hit 100 before the result pops in
+    $("#loadbar-fill").style.width = "100%";
+    setTimeout(close, 350);
+  } else {
+    close();
+  }
 }
 
 /* ---------------- generate ---------------- */
@@ -137,6 +180,7 @@ function initGenerate() {
     if (!uploadDataUrl) return;
     $("#btn-generate").disabled = true;
     showLoading();
+    let ok = false;
     try {
       const data = await callGenerate();
       resultDataUrl = data.image;
@@ -145,6 +189,7 @@ function initGenerate() {
       $("#gen-result").hidden = false;
       if (typeof data.remaining === "number") setRemaining(data.remaining);
       if (navigator.vibrate) navigator.vibrate([20, 40, 60]);
+      ok = true;
     } catch (err) {
       if (err.soldOut) {
         toast(err.message);
@@ -153,7 +198,7 @@ function initGenerate() {
         toast(err.message || "something broke. the site ate too much. try again.");
       }
     } finally {
-      hideLoading();
+      hideLoading(ok);
       $("#btn-generate").disabled = !uploadDataUrl;
     }
   });

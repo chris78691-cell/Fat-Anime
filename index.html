@@ -160,9 +160,15 @@
 
   <!-- =================== GENERATION LOADING OVERLAY =================== -->
   <div class="loading" id="loading" hidden>
-    <div class="blob" id="blob">🍔</div>
+    <div class="load-stage sticker" id="load-stage">
+      <img class="before" id="load-before" alt="">
+      <img class="after" id="load-after" alt="">
+    </div>
+    <div class="loadbar sticker" role="progressbar" aria-label="fattening progress">
+      <div class="loadbar-fill" id="loadbar-fill"></div>
+    </div>
     <div class="loading-caption" id="loading-caption">feeding…</div>
-    <p class="loading-sub">a proper fattening takes 15–60 seconds.<br>screen-record this if you're bored.</p>
+    <p class="loading-sub">a proper fattening takes 15–60 seconds</p>
   </div>
 
   <!-- =================== DETAIL MODAL =================== -->

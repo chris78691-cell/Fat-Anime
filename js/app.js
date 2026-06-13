@@ -192,7 +192,24 @@ export async function shareImage(url, text) {
   toast("saved! now go post it 📮");
 }
 
-export function downloadImage(url, name) {
+const TOUCH_DEVICE = matchMedia("(pointer: coarse)").matches;
+
+export async function downloadImage(url, name) {
+  // phones/tablets: route through the share sheet — its "Save Image"
+  // goes straight to the camera roll instead of a downloads folder
+  if (TOUCH_DEVICE) {
+    try {
+      const blob = await (await fetch(url)).blob();
+      const file = new File([blob], name, { type: blob.type });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({ files: [file] });
+        return;
+      }
+    } catch (err) {
+      if (err.name === "AbortError") return; // they closed the sheet — not an error
+    }
+  }
+  // desktop (or no share support): plain download
   const a = document.createElement("a");
   a.href = url;
   a.download = name;

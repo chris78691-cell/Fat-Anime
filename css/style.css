@@ -688,18 +688,51 @@ button {
   opacity: 0.05;
 }
 
-.blob {
-  width: 130px;
-  height: 130px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 64px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--pink), var(--orange));
-  border: var(--border);
-  box-shadow: var(--shadow);
-  animation: gorge 60s ease-out forwards, chew 1.1s ease-in-out infinite;
+/* the wait is a show: presets inflate while a striped bar fills */
+
+.load-stage {
+  position: relative;
+  width: min(72vw, 300px);
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  padding: 0;
+}
+
+.load-stage img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.load-stage img.after { opacity: 0; }
+.load-stage.fat img.after { opacity: 1; animation: inflate 0.4s var(--spring); }
+.load-stage.fat img.before { opacity: 0; }
+
+.loadbar {
+  width: min(80vw, 340px);
+  height: 30px;
+  border-radius: 999px;
+  padding: 3px;
+  overflow: hidden;
+}
+
+.loadbar-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.35) 0 10px, transparent 10px 20px),
+    linear-gradient(90deg, var(--pink), var(--orange));
+  background-size: 28px 100%, 100% 100%;
+  animation: stripes 0.7s linear infinite;
+  transition: width 0.35s linear;
+}
+
+@keyframes stripes {
+  to { background-position: 28px 0, 0 0; }
 }
 
 .loading-caption {
@@ -712,16 +745,6 @@ button {
 
 /* ---------- keyframes ---------- */
 
-@keyframes gorge {
-  /* slow, inevitable growth across the whole wait */
-  0% { transform: scale(0.8); }
-  100% { transform: scale(1.6); }
-}
-
-@keyframes chew {
-  0%, 100% { border-radius: 50% 50% 48% 52% / 52% 48% 50% 50%; }
-  50% { border-radius: 48% 52% 50% 50% / 50% 50% 52% 48%; }
-}
 
 
 @keyframes pop {
