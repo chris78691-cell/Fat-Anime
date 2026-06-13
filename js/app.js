@@ -1,5 +1,7 @@
 /* FAT ANIME — gallery, tabs, reveal. No framework, one API call later. */
 
+import { inject } from '@vercel/analytics';
+
 const $ = (sel) => document.querySelector(sel);
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -250,6 +252,9 @@ export async function fetchSlots() {
 /* ---------------- boot ---------------- */
 
 (async function boot() {
+  // Initialize Vercel Analytics
+  inject({ mode: 'production' });
+  
   initTabs();
   initHero();
   initVideos();
