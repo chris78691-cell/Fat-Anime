@@ -39,7 +39,9 @@ const HERO_VIDEOS = [
 
 function initHero() {
   const video = $("#hero-video");
-  video.src = HERO_VIDEOS[Math.floor(Math.random() * HERO_VIDEOS.length)];
+  const src = HERO_VIDEOS[Math.floor(Math.random() * HERO_VIDEOS.length)];
+  video.src = src;
+  video.poster = src.replace(".mp4", ".jpg"); // first frame while the video buffers
   if (reducedMotion) {
     // no auto-motion: show controls and let them press play
     video.autoplay = false;
