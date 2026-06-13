@@ -1,6 +1,7 @@
 /* FAT ANIME — requests board: who eats next. */
 
 import { toast } from "/js/app.js";
+import { t } from "/js/i18n.js";
 
 const $ = (sel) => document.querySelector(sel);
 
@@ -128,7 +129,7 @@ async function vote(r, btn) {
     r.votes = Math.max(0, r.votes + (nowVoted ? -1 : 1));
     setVoted(r.id, wasVoted);
     paintVote(btn, r, wasVoted, false);
-    toast(err.message || "vote slipped off the plate. try again.");
+    toast(err.message || t("toast_vote_fail"));
   } finally {
     delete btn.dataset.busy;
   }
@@ -141,7 +142,7 @@ function initForm() {
     e.preventDefault();
     const input = $("#request-input");
     const text = input.value.replace(/\s+/g, " ").trim();
-    if (text.length < 2) return toast("who? give us a name!");
+    if (text.length < 2) return toast(t("toast_noname"));
 
     const btn = e.target.querySelector("button");
     btn.disabled = true;
@@ -163,9 +164,9 @@ function initForm() {
       input.value = "";
       requests.push(created);
       render();
-      toast("request fed to the kitchen 👨‍🍳");
+      toast(t("toast_req_sent"));
     } catch (err) {
-      toast(err.message || "couldn't save that. try again.");
+      toast(err.message || t("toast_req_fail"));
     } finally {
       btn.disabled = false;
     }

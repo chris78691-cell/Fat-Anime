@@ -1,19 +1,14 @@
 /* FAT ANIME — generator tab: upload, fatten, share. */
 
 import { shareImage, downloadImage, toast, fetchSlots, getPresets, openDetail } from "/js/app.js";
+import { t, onLangChange } from "/js/i18n.js";
 
 const $ = (sel) => document.querySelector(sel);
 
-const CAPTIONS = [
-  "feeding…",
-  "extra portions…",
-  "loosening the belt…",
-  "unlocking the second stomach…",
-  "carbo-loading…",
-  "negotiating with the buffet…",
-  "reinforcing the chair…",
-  "dessert (mandatory)…",
-  "one more bite…",
+// loading caption keys (resolved through i18n at display time)
+const CAPTION_KEYS = [
+  "cap_feeding", "cap_portions", "cap_belt", "cap_stomach", "cap_carbo",
+  "cap_buffet", "cap_chair", "cap_dessert", "cap_onemore",
 ];
 
 /* Append ?mock=1 to the URL to demo the full flow without the API
@@ -41,10 +36,7 @@ function userId() {
 
 /* ---------------- mode toggle ---------------- */
 
-const HINTS = {
-  full: "fattens the whole picture, as-is",
-  pfp: "square-cropped for TikTok / Insta / Discord / X avatars",
-};
+const hintKey = () => (mode === "pfp" ? "hint_pfp" : "hint_full");
 
 function initModes() {
   document.querySelectorAll(".mode").forEach((b) => {
@@ -54,9 +46,11 @@ function initModes() {
         x.classList.toggle("active", x === b);
         x.setAttribute("aria-selected", x === b);
       });
-      $("#mode-hint").textContent = HINTS[mode];
+      $("#mode-hint").textContent = t(hintKey());
     });
   });
+  // keep the hint correct after a language switch
+  onLangChange(() => { $("#mode-hint").textContent = t(hintKey()); });
 }
 
 /* ---------------- upload + client-side downscale ---------------- */
@@ -70,9 +64,9 @@ function initUpload() {
     const file = input.files[0];
     if (!file) return;
     if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
-      return toast("jpg, png or webp only!");
+      return toast(t("toast_filetype"));
     }
-    if (file.size > 10 * 1024 * 1024) return toast("too thicc already — 10MB max");
+    if (file.size > 10 * 1024 * 1024) return toast(t("toast_toobig"));
 
     uploadDataUrl = await downscale(file, 1024);
     $("#upload-preview").src = uploadDataUrl;
@@ -123,10 +117,10 @@ function showLoading() {
 
   // rotating captions
   let i = 0;
-  $("#loading-caption").textContent = CAPTIONS[0];
+  $("#loading-caption").textContent = t(CAPTION_KEYS[0]);
   captionTimer = setInterval(() => {
-    i = (i + 1) % CAPTIONS.length;
-    $("#loading-caption").textContent = CAPTIONS[i];
+    i = (i + 1) % CAPTION_KEYS.length;
+    $("#loading-caption").textContent = t(CAPTION_KEYS[i]);
   }, 2400);
 
   // shuffled preset slideshow: before beat → inflate → next
@@ -151,8 +145,8 @@ function showLoading() {
   fill.style.width = "0%";
   const start = Date.now();
   barTimer = setInterval(() => {
-    const t = (Date.now() - start) / 1000;
-    fill.style.width = `${(94 * (1 - Math.exp(-t / 22))).toFixed(1)}%`;
+    const elapsed = (Date.now() - start) / 1000;
+    fill.style.width = `${(94 * (1 - Math.exp(-elapsed / 22))).toFixed(1)}%`;
   }, 300);
 }
 
@@ -195,7 +189,7 @@ function initGenerate() {
         toast(err.message);
         await refreshSlots();
       } else {
-        toast(err.message || "something broke. the site ate too much. try again.");
+        toast(err.message || t("toast_generic_fail"));
       }
     } finally {
       hideLoading(ok);
@@ -225,11 +219,11 @@ async function callGenerate() {
       body: JSON.stringify({ image: uploadDataUrl, mode, userId: userId() }),
     });
   } catch {
-    throw new Error("network said no. check your signal and retry!");
+    throw new Error(t("net_fail"));
   }
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
-    const err = new Error(data.error || "the kitchen choked 🔥 try again!");
+    const err = new Error(data.error || t("kitchen_choked"));
     err.soldOut = Boolean(data.soldOut);
     throw err;
   }
@@ -320,9 +314,9 @@ function initNotify() {
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error);
       $("#notify-email").value = "";
-      toast("locked in. we'll yell when it's feeding time 📣");
+      toast(t("toast_notify_ok"));
     } catch (err) {
-      toast(err.message || "couldn't save that — try again");
+      toast(err.message || t("toast_notify_fail"));
     }
   });
 }

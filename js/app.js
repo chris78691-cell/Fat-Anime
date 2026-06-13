@@ -1,5 +1,7 @@
 /* FAT ANIME — gallery, tabs, reveal. No framework, one API call later. */
 
+import { t, onLangChange } from "/js/i18n.js";
+
 const $ = (sel) => document.querySelector(sel);
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -121,7 +123,7 @@ export function openDetail(p) {
   $("#detail-series").textContent = p.series;
   $("#stage").classList.remove("fat");
   $("#tap-hint").hidden = false;
-  $("#tap-hint").textContent = "TAP TO FATTEN 👆";
+  $("#tap-hint").textContent = t("tap_fatten");
   $("#modal").hidden = false;
   document.body.style.overflow = "hidden";
 }
@@ -144,7 +146,7 @@ function initModal() {
       if (navigator.vibrate) navigator.vibrate(30);
     } else {
       hint.hidden = false;
-      hint.textContent = "TAP TO RE-FATTEN 👆";
+      hint.textContent = t("tap_refatten");
     }
   });
 
@@ -191,7 +193,7 @@ export async function shareImage(url, text) {
   }
   // desktop / unsupported: download instead
   downloadImage(url, url.split("/").pop());
-  toast("saved! now go post it 📮");
+  toast(t("toast_saved"));
 }
 
 const TOUCH_DEVICE = matchMedia("(pointer: coarse)").matches;
@@ -260,9 +262,9 @@ export async function fetchSlots() {
     $("#view-gallery").innerHTML = `
       <div class="placeholder sticker" style="margin-top:24px;">
         <div class="big-emoji">🫠</div>
-        <h2>THE GALLERY ATE ITSELF</h2>
-        <p>couldn't load the fattened. check your signal.</p>
-        <button class="btn orange" style="margin-top:14px;" onclick="location.reload()">TRY AGAIN 🔄</button>
+        <h2>${t("gallery_err_title")}</h2>
+        <p>${t("gallery_err_sub")}</p>
+        <button class="btn orange" style="margin-top:14px;" onclick="location.reload()">${t("try_again")}</button>
       </div>`;
     return;
   }
