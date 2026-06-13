@@ -13,14 +13,14 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { data: votes, error } = await supabase().rpc("cast_vote", {
+    // toggle: first tap votes, tapping again takes it back
+    const { data, error } = await supabase().rpc("toggle_vote", {
       p_request: id, p_voter: userId,
     });
     if (error) throw error;
 
-    if (votes === -1) return res.status(409).json({ error: "you already voted for this one 🍽️", already: true });
-    if (votes === -2) return res.status(404).json({ error: "that request got eaten" });
-    return res.status(200).json({ votes });
+    if (data?.error === "gone") return res.status(404).json({ error: "that request got eaten" });
+    return res.status(200).json({ votes: data.votes, voted: data.voted });
   } catch (err) {
     console.error("vote:", err);
     return res.status(500).json({ error: "vote slipped off the plate. try again." });

@@ -24,11 +24,12 @@ function userId() {
   return id;
 }
 
-/* one vote per request per visitor — remembered locally, enforced server-side */
+/* one vote per request per visitor (toggleable) — remembered locally, enforced server-side */
 const votedSet = new Set(JSON.parse(localStorage.getItem("fatanime-votes") || "[]"));
 
-function markVoted(id) {
-  votedSet.add(id);
+function setVoted(id, on) {
+  if (on) votedSet.add(id);
+  else votedSet.delete(id);
   localStorage.setItem("fatanime-votes", JSON.stringify([...votedSet]));
 }
 
@@ -69,7 +70,7 @@ function render() {
     const voted = votedSet.has(r.id);
     card.innerHTML = `
       <div class="request-text"></div>
-      <button class="vote-btn squish ${voted ? "voted" : ""}" ${voted ? "disabled" : ""} aria-label="upvote">
+      <button class="vote-btn squish ${voted ? "voted" : ""}" aria-label="toggle vote" aria-pressed="${voted}">
         🍔 <span class="count">${r.votes}</span>
       </button>`;
     card.querySelector(".request-text").textContent = r.text; // textContent — user input stays text
@@ -78,22 +79,32 @@ function render() {
   });
 }
 
-/* ---------------- vote ---------------- */
+/* ---------------- vote (toggle: tap to like, tap again to unlike) ---------------- */
+
+function paintVote(btn, r, voted, bump) {
+  const countEl = btn.querySelector(".count");
+  countEl.textContent = r.votes;
+  btn.classList.toggle("voted", voted);
+  btn.setAttribute("aria-pressed", voted);
+  if (bump) {
+    countEl.classList.remove("bump");
+    void countEl.offsetWidth; // restart the bump animation
+    countEl.classList.add("bump");
+  }
+}
 
 async function vote(r, btn) {
-  if (votedSet.has(r.id)) return;
+  if (btn.dataset.busy) return; // one toggle in flight per card
+  btn.dataset.busy = "1";
 
-  // optimistic: count up + lock immediately, roll back on failure
-  const countEl = btn.querySelector(".count");
-  r.votes += 1;
-  countEl.textContent = r.votes;
-  countEl.classList.remove("bump");
-  void countEl.offsetWidth; // restart the bump animation
-  countEl.classList.add("bump");
-  btn.classList.add("voted");
-  btn.disabled = true;
-  markVoted(r.id);
-  if (navigator.vibrate) navigator.vibrate(20);
+  const wasVoted = votedSet.has(r.id);
+  const nowVoted = !wasVoted;
+
+  // optimistic flip, rolled back on failure
+  r.votes = Math.max(0, r.votes + (nowVoted ? 1 : -1));
+  setVoted(r.id, nowVoted);
+  paintVote(btn, r, nowVoted, nowVoted);
+  if (nowVoted && navigator.vibrate) navigator.vibrate(20);
 
   try {
     if (MOCK) {
@@ -107,21 +118,19 @@ async function vote(r, btn) {
       body: JSON.stringify({ userId: userId() }),
     });
     const data = await res.json().catch(() => ({}));
-    if (res.ok) {
-      r.votes = data.votes;
-      countEl.textContent = r.votes;
-    } else if (!data.already) {
-      throw new Error(data.error);
-    }
+    if (!res.ok) throw new Error(data.error);
+    // server is the source of truth
+    r.votes = data.votes;
+    setVoted(r.id, data.voted);
+    paintVote(btn, r, data.voted, false);
   } catch (err) {
-    // roll back the optimistic vote
-    r.votes -= 1;
-    countEl.textContent = r.votes;
-    btn.classList.remove("voted");
-    btn.disabled = false;
-    votedSet.delete(r.id);
-    localStorage.setItem("fatanime-votes", JSON.stringify([...votedSet]));
+    // roll back the optimistic flip
+    r.votes = Math.max(0, r.votes + (nowVoted ? -1 : 1));
+    setVoted(r.id, wasVoted);
+    paintVote(btn, r, wasVoted, false);
     toast(err.message || "vote slipped off the plate. try again.");
+  } finally {
+    delete btn.dataset.busy;
   }
 }
 

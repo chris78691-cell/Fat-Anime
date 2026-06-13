@@ -84,7 +84,7 @@ button {
 .wordmark {
   font-family: var(--font-display);
   font-size: clamp(40px, 12vw, 52px);
-  margin: 18px 0 4px;
+  margin: 6px 0 4px;
   text-align: center;
   color: var(--pink);
   -webkit-text-stroke: 2px var(--ink);
@@ -174,37 +174,16 @@ button {
 
 .hero .frame {
   position: relative;
-  aspect-ratio: 1 / 1;
-  background:
-    repeating-conic-gradient(from 0deg at 50% 50%, var(--yellow) 0deg 7deg, var(--bg) 7deg 14deg);
+  aspect-ratio: 4 / 3;
+  background: var(--ink);
 }
 
-.hero img {
+.hero video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
-}
-
-.hero img.after { opacity: 0; }
-
-.hero.fat img.after { opacity: 1; animation: inflate 0.4s var(--spring); }
-.hero.fat img.before { opacity: 0; }
-
-.hero .tag {
-  position: absolute;
-  left: 12px;
-  bottom: 12px;
-  font-family: var(--font-display);
-  font-size: 15px;
-  background: var(--card);
-  border: var(--border);
-  border-radius: 12px;
-  box-shadow: var(--shadow-sm);
-  padding: 6px 12px;
-  transform: rotate(-2deg);
 }
 
 /* ---------- chips ---------- */
@@ -373,10 +352,10 @@ button {
   max-width: 480px;
   z-index: 40;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1.2fr 1fr 1fr;
   background: var(--card);
   border-top: var(--border);
-  padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
+  padding: 8px 6px calc(8px + env(safe-area-inset-bottom));
 }
 
 .tab {
@@ -385,10 +364,13 @@ button {
   align-items: center;
   gap: 3px;
   font-weight: 800;
-  font-size: 11px;
-  letter-spacing: 0.04em;
+  font-size: 10px;
+  letter-spacing: 0.03em;
   opacity: 0.55;
   transition: transform 0.15s var(--spring), opacity 0.15s;
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap;
 }
 
 .tab:active { transform: scale(0.9); }
@@ -400,6 +382,8 @@ button {
   margin-top: -30px;
   color: var(--ink);
 }
+
+.tab.fatten .fatten-label { font-size: 8.5px; letter-spacing: 0.02em; }
 
 .tab.fatten .bubble {
   width: 62px;
@@ -566,7 +550,8 @@ button {
 .notify input {
   flex: 1;
   min-width: 0;
-  font: 600 15px var(--font-body);
+  /* 16px minimum: anything smaller makes iOS Safari zoom/pan on focus */
+  font: 600 16px var(--font-body);
   padding: 12px 14px;
   border: var(--border);
   border-radius: 14px;
@@ -576,6 +561,29 @@ button {
 
 .notify input:focus { outline: 3px solid var(--orange); outline-offset: 1px; }
 .notify .btn { font-size: 15px; padding: 12px 16px; }
+
+/* ---------- videos ---------- */
+
+.video-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.video-card { overflow: hidden; padding: 0; }
+
+.video-card video {
+  display: block;
+  width: 100%;
+  background: var(--ink);
+}
+
+.video-card .label {
+  font-family: var(--font-display);
+  font-size: 15px;
+  padding: 9px 12px;
+  border-top: var(--border);
+}
 
 /* ---------- requests board ---------- */
 
@@ -589,7 +597,8 @@ button {
 .request-form input {
   flex: 1;
   min-width: 0;
-  font: 600 15px var(--font-body);
+  /* 16px minimum: anything smaller makes iOS Safari zoom/pan on focus */
+  font: 600 16px var(--font-body);
   padding: 12px 14px;
   border: var(--border);
   border-radius: 14px;

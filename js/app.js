@@ -14,7 +14,7 @@ async function loadPresets() {
 
 /* ---------------- tabs ---------------- */
 
-const views = { gallery: "#view-gallery", generate: "#view-generate", requests: "#view-requests" };
+const views = { gallery: "#view-gallery", videos: "#view-videos", generate: "#view-generate", requests: "#view-requests" };
 
 function switchTab(name) {
   for (const [tab, sel] of Object.entries(views)) $(sel).hidden = tab !== name;
@@ -28,27 +28,34 @@ function initTabs() {
   document.querySelectorAll("[data-goto]").forEach((b) => b.addEventListener("click", () => switchTab(b.dataset.goto)));
 }
 
-/* ---------------- hero: daily preset, auto inflate loop ---------------- */
+/* ---------------- hero: a random brand video each visit ---------------- */
+
+const HERO_VIDEOS = [
+  "/assets/videos/attack-on-food.mp4",
+  "/assets/videos/fatland-saga.mp4",
+  "/assets/videos/gainsaw-man.mp4",
+];
 
 function initHero() {
-  const slug = window.__heroSlug || presets[0].slug;
-  const p = presets.find((x) => x.slug === slug) || presets[0];
-  $("#hero-before").src = p.before;
-  $("#hero-after").src = p.after;
-  $("#hero-tag").textContent = p.character;
-  const hero = $("#hero");
-  hero.addEventListener("click", () => openDetail(p));
+  const video = $("#hero-video");
+  video.src = HERO_VIDEOS[Math.floor(Math.random() * HERO_VIDEOS.length)];
+  if (reducedMotion) {
+    // no auto-motion: show controls and let them press play
+    video.autoplay = false;
+    video.controls = true;
+  }
+}
 
-  if (reducedMotion) { hero.classList.add("fat"); return; }
-  // before: quick beat, after: lingers — self-rescheduling so the holds differ
-  let fat = false;
-  (function flip(delay) {
-    setTimeout(() => {
-      fat = !fat;
-      hero.classList.toggle("fat", fat);
-      flip(fat ? 2800 : 1500);
-    }, delay);
-  })(1400);
+/* ---------------- videos tab: one tape at a time ---------------- */
+
+function initVideos() {
+  const vids = document.querySelectorAll("#view-videos video");
+  vids.forEach((v) => {
+    v.addEventListener("play", () => vids.forEach((o) => { if (o !== v) o.pause(); }));
+  });
+  document.addEventListener("tabchange", (e) => {
+    if (e.detail !== "videos") vids.forEach((v) => v.pause());
+  });
 }
 
 /* ---------------- chips + grid ---------------- */
@@ -224,6 +231,8 @@ export async function fetchSlots() {
 
 (async function boot() {
   initTabs();
+  initHero();
+  initVideos();
   try {
     await loadPresets();
   } catch {
@@ -237,7 +246,6 @@ export async function fetchSlots() {
       </div>`;
     return;
   }
-  initHero();
   renderChips();
   renderGrid();
   initModal();

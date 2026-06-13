@@ -137,6 +137,46 @@ create table if not exists request_submissions (
 alter table request_submissions enable row level security;
 
 -- ------------------------------------------------------------
+-- Toggle a visitor's vote: first tap adds it, second removes it.
+-- Returns {"votes": n, "voted": bool}, or {"error": "gone"}.
+-- ------------------------------------------------------------
+create or replace function toggle_vote(p_request uuid, p_voter text)
+returns json
+language plpgsql
+security definer
+as $$
+declare
+  new_votes integer;
+  now_voted boolean;
+begin
+  delete from request_votes
+   where request_id = p_request
+     and voter = p_voter;
+
+  if found then
+    now_voted := false;
+    update requests
+       set votes = greatest(votes - 1, 0)
+     where id = p_request
+    returning votes into new_votes;
+  else
+    insert into request_votes (request_id, voter) values (p_request, p_voter);
+    now_voted := true;
+    update requests
+       set votes = votes + 1
+     where id = p_request
+    returning votes into new_votes;
+  end if;
+
+  if new_votes is null then
+    return json_build_object('error', 'gone');
+  end if;
+  return json_build_object('votes', new_votes, 'voted', now_voted);
+end;
+$$;
+
+-- ------------------------------------------------------------
+-- (deprecated by toggle_vote, kept for compatibility)
 -- One vote per visitor per request. Returns the new vote count,
 -- -1 if this visitor already voted, -2 if the request is gone.
 -- ------------------------------------------------------------
