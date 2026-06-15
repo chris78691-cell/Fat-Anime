@@ -24,11 +24,14 @@
   --border: 3px solid var(--ink);
   --shadow: 4px 4px 0 var(--ink);
   --shadow-sm: 3px 3px 0 var(--ink);
+  /* Sukajan brush is primary everywhere; numbers, $, punctuation and
+     Japanese (which the brush font lacks) fall back per-glyph to these. */
   --font-brand: "Sukajan Brush", "Dela Gothic One", sans-serif;
-  --font-display: "Dela Gothic One", system-ui, sans-serif;
-  --font-ui: "Zen Kaku Gothic New", "Inter", system-ui, sans-serif;
-  --font-jp: "Dela Gothic One", system-ui, sans-serif;
-  --font-body: "Inter", "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+  --font-display: "Sukajan Brush", "Dela Gothic One", system-ui, sans-serif;
+  --font-ui: "Sukajan Brush", "Zen Kaku Gothic New", "Inter", system-ui, sans-serif;
+  --font-jp: "Dela Gothic One", "Noto Sans JP", system-ui, sans-serif;
+  --font-body: "Sukajan Brush", "Inter", "Zen Kaku Gothic New", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  --font-clean: "Inter", "Noto Sans JP", system-ui, sans-serif;
   --tabbar-h: 74px;
   --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -685,7 +688,7 @@ button {
   flex: 1;
   min-width: 0;
   /* 16px minimum: anything smaller makes iOS Safari zoom/pan on focus */
-  font: 600 16px var(--font-body);
+  font: 600 16px var(--font-clean);
   padding: 12px 14px;
   border: var(--border);
   border-radius: 14px;
@@ -731,8 +734,9 @@ button {
 .request-form input {
   flex: 1;
   min-width: 0;
-  /* 16px minimum: anything smaller makes iOS Safari zoom/pan on focus */
-  font: 600 16px var(--font-body);
+  /* 16px minimum: anything smaller makes iOS Safari zoom/pan on focus.
+     Clean font: brush is illegible for what users type. */
+  font: 600 16px var(--font-clean);
   padding: 12px 14px;
   border: var(--border);
   border-radius: 14px;
