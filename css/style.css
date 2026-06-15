@@ -281,9 +281,9 @@ button {
   gap: 14px;
   width: 100%;
   padding: 14px 16px;
-  background: var(--surface-2);
-  border: 1px solid var(--line);
-  border-left: 2px solid var(--pink);   /* the single pink accent: "this is the action" */
+  background: rgba(40, 35, 54, 0.92);   /* more opaque — reads as a solid button */
+  border: 1px solid var(--line-strong);
+  border-left: 3px solid var(--pink);   /* the single pink accent: "this is the action" */
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   text-align: left;
@@ -303,8 +303,8 @@ button {
 
 .cta-demo {
   flex: 0 0 auto;
-  width: 84px;
-  height: 60px;
+  width: 116px;
+  height: 66px;
   object-fit: cover;
   border-radius: var(--radius-sm);
   border: 1px solid var(--line-strong);
