@@ -251,7 +251,26 @@ export async function fetchSlots() {
 
 /* ---------------- boot ---------------- */
 
+/* ---------------- intro reveal ---------------- */
+
+function initIntro() {
+  const intro = document.getElementById("intro");
+  if (!intro) return;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const dwell = reduce ? 350 : 1500;
+  let done = false;
+  const close = () => {
+    if (done) return;
+    done = true;
+    intro.classList.add("hide");
+    setTimeout(() => intro.remove(), 650);
+  };
+  setTimeout(close, dwell);
+  intro.addEventListener("click", close); // tap to skip
+}
+
 (async function boot() {
+  initIntro();
   initTabs();
   initHero();
   initVideos();
