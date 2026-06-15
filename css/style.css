@@ -91,7 +91,12 @@ button {
   min-height: 100dvh;
   padding: 0 14px calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 24px);
   position: relative;
+  z-index: 2;          /* above .skybg (0) and the desktop .stage-panel (1) */
 }
+
+/* Desktop-only frosted panel behind the centred phone frame. Blurs the
+   sharp wide art directly behind the middle; sharp art stays on the sides. */
+.stage-panel { display: none; }
 
 /* subtle halftone dots behind everything */
 .app::before {
@@ -263,6 +268,20 @@ button {
 .btn:active {
   transform: translate(3px, 3px) scale(0.93);
   box-shadow: 1px 1px 0 var(--ink);
+}
+
+/* home CTA carrying the before/after demo image */
+.cta-fatten {
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 16px 14px;
+}
+
+.cta-demo {
+  width: 100%;
+  display: block;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
 }
 
 .btn.orange { background: var(--orange); }
@@ -972,8 +991,37 @@ button {
    ============================================================ */
 
 @media (min-width: 768px) {
-  /* The phone frame is fully transparent — the fixed .skybg shows straight
-     through it, so the sky is continuous inside and out. No seam. */
+  /* Desktop: sharp wide key-art fills the viewport (crisp sides, no blur,
+     no overlay) — the frosted panel handles the centre + readability. */
+  .skybg {
+    background-image: url("/assets/hero-art-wide.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /* Frosted panel: slightly larger than the phone, centred behind it. */
+  .stage-panel {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    top: 8px;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 524px;
+    max-width: calc(100vw - 24px);
+    border-radius: 46px;
+    border: 2px solid rgba(255, 255, 255, 0.22);
+    background: rgba(12, 11, 20, 0.38);
+    backdrop-filter: blur(26px) saturate(1.05);
+    -webkit-backdrop-filter: blur(26px) saturate(1.05);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+    pointer-events: none;
+  }
+
+  /* The phone frame is transparent — the frosted panel shows through it,
+     giving the in-app content its blurred, dark, readable backdrop. */
   .app {
     background: transparent;
     margin: 28px auto;
@@ -984,7 +1032,7 @@ button {
     scrollbar-width: none;
     border: var(--border);
     border-radius: 36px;
-    box-shadow: 10px 10px 0 var(--ink);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.5);
   }
 
   .app::-webkit-scrollbar { display: none; }

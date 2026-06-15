@@ -39,6 +39,7 @@
   </div>
 
   <div class="skybg" aria-hidden="true"></div>
+  <div class="stage-panel" aria-hidden="true"></div>
   <div class="petals" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 
   <div class="app">
@@ -63,7 +64,10 @@
       </div>
 
       <div style="display:flex; flex-direction:column; gap:14px; margin-top:16px;">
-        <button class="btn big" data-goto="generate" data-i18n="cta_make_fat">MAKE YOUR ANIME PFP FAT</button>
+        <button class="btn big cta-fatten" data-goto="generate">
+          <span data-i18n="cta_make_fat">MAKE YOUR ANIME PFP FAT</span>
+          <img class="cta-demo" src="/assets/before-after.webp" alt="an anime character before and after being fattened" loading="lazy">
+        </button>
         <div class="slots-pill" id="slots-pill-home">⚡ <span class="num" id="slots-num-home">50</span> <span data-i18n="slots_home">of 50 custom fat pfps left today</span></div>
       </div>
 
