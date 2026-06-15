@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- enso: a single off-round brush ring with a small gap -->
+  <path d="M138 36 C170 56 184 96 174 130 C162 168 120 184 84 178 C44 171 18 136 22 96 C26 58 58 28 100 26 C112 25 126 28 138 34"
+        stroke="#f3efe7" stroke-width="9" stroke-linecap="round"
+        transform="rotate(-18 100 100)"/>
+</svg>

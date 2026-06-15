@@ -7,7 +7,7 @@ const DICT = {
   // home
   cta_make_fat:   { en: "MAKE YOUR ANIME PFP FAT", ja: "アニメアイコンを太らせよう" },
   slots_home:     { en: "of 50 custom fat pfps left today", ja: "/ 50 本日のこり" },
-  sec_fattened:   { en: "THE FATTENED ☆", ja: "ファット殿堂 ☆" },
+  sec_fattened:   { en: "THE FATTENED", ja: "ファット殿堂" },
 
   // generator
   of:             { en: "of", ja: "/" },
@@ -18,12 +18,12 @@ const DICT = {
   hint_pfp:       { en: "square-cropped for TikTok / Insta / Discord / X avatars", ja: "TikTok / Insta / Discord / X のアイコン用に正方形でトリミング" },
   dz_title:       { en: "TAP TO UPLOAD", ja: "タップでアップロード" },
   dz_sub:         { en: "your anime pic · jpg / png / webp · max 10MB", ja: "アニメ画像 · jpg / png / webp · 最大10MB" },
-  change_pic:     { en: "CHANGE PIC 🔄", ja: "画像を変える 🔄" },
-  fatten_it:      { en: "FATTEN IT 🍔", ja: "太らせる 🍔" },
+  change_pic:     { en: "CHANGE PIC", ja: "画像を変える" },
+  fatten_it:      { en: "FATTEN IT", ja: "太らせる" },
   fineprint:      { en: "uploads are fattened in memory and never stored", ja: "アップロード画像は保存されず、処理後すぐ破棄されます" },
-  share:          { en: "SHARE 📤", ja: "シェア 📤" },
-  save:           { en: "SAVE ⬇️", ja: "保存 ⬇️" },
-  fatten_another: { en: "FATTEN ANOTHER 🍔", ja: "もう一枚太らせる 🍔" },
+  share:          { en: "SHARE", ja: "シェア" },
+  save:           { en: "SAVE", ja: "保存" },
+  fatten_another: { en: "FATTEN ANOTHER", ja: "もう一枚太らせる" },
 
   // sold out
   soldout_title:  { en: "ALL 50 FATTENINGS EATEN TODAY", ja: "本日の50枚は完食！" },
@@ -33,25 +33,25 @@ const DICT = {
   sec_classics:   { en: "MEANWHILE, THE CLASSICS", ja: "そのあいだに、定番をどうぞ" },
 
   // videos
-  sec_videos:     { en: "THE FEEDING TAPES 🎬", ja: "もぐもぐ劇場 🎬" },
+  sec_videos:     { en: "THE FEEDING TAPES", ja: "もぐもぐ劇場" },
 
   // requests
-  sec_requests:   { en: "WHO EATS NEXT? 🍴", ja: "次に太らせるのは？ 🍴" },
+  sec_requests:   { en: "WHO EATS NEXT?", ja: "次に太らせるのは？" },
   req_ph:         { en: "who gets fattened next?", ja: "次に太らせるのは誰？" },
-  feed:           { en: "FEED 🍴", ja: "送信 🍴" },
+  feed:           { en: "FEED", ja: "送信" },
   empty_title:    { en: "NOBODY'S HUNGRY YET", ja: "まだ誰もいません" },
   empty_sub:      { en: "request the first victim. history will remember you.", ja: "最初のリクエストをどうぞ。歴史に名を刻め。" },
   err_title:      { en: "THE BOARD FELL OVER", ja: "ボードが転びました" },
   err_sub:        { en: "too many requests in its arms. probably.", ja: "リクエストを抱えすぎたのかも。" },
-  try_again:      { en: "TRY AGAIN 🔄", ja: "もう一度 🔄" },
+  try_again:      { en: "TRY AGAIN", ja: "もう一度" },
 
   // loading
   loading_caption_default: { en: "feeding…", ja: "餌やり中…" },
   loading_sub:    { en: "a proper fattening takes 15–60 seconds", ja: "しっかり太らせるのに15〜60秒かかります" },
 
   // gallery detail
-  tap_fatten:     { en: "TAP TO FATTEN 👆", ja: "タップで太らせる 👆" },
-  tap_refatten:   { en: "TAP TO RE-FATTEN 👆", ja: "もう一度タップ 👆" },
+  tap_fatten:     { en: "TAP TO FATTEN", ja: "タップで太らせる" },
+  tap_refatten:   { en: "TAP TO RE-FATTEN", ja: "もう一度タップ" },
 
   // gallery load failure
   gallery_err_title: { en: "THE GALLERY ATE ITSELF", ja: "ギャラリーが自分を食べました" },
