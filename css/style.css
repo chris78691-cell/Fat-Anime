@@ -928,6 +928,11 @@ button {
   animation: intro-zoom 2.6s ease-out both;
 }
 
+/* desktop intro uses the wide 16:9 key-art (matches the desktop background) */
+@media (min-width: 768px) {
+  .intro-art { background-image: url("/assets/hero-art-wide.webp"); }
+}
+
 .intro-art::after {
   content: "";
   position: absolute;
