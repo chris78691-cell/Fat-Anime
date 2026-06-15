@@ -28,10 +28,10 @@
      title, anime/series names and character names. Everything else uses
      the clean fonts below. $/digits/punctuation/Japanese (absent from the
      brush) fall back per-glyph to Dela. */
-  --font-brand: "Sukajan Brush", "Dela Gothic One", sans-serif;
+  --font-brand: "Sukajan Brush", "Zen Kaku Gothic New", "Noto Sans JP", sans-serif;
   --font-display: "Dela Gothic One", system-ui, sans-serif;
   --font-ui: "Zen Kaku Gothic New", "Inter", system-ui, sans-serif;
-  --font-jp: "Dela Gothic One", "Noto Sans JP", system-ui, sans-serif;
+  --font-jp: "Zen Kaku Gothic New", "Noto Sans JP", system-ui, sans-serif;
   --font-body: "Inter", "Zen Kaku Gothic New", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
   --font-clean: "Inter", "Noto Sans JP", system-ui, sans-serif;
   --tabbar-h: 74px;
@@ -141,6 +141,7 @@ button {
   position: relative;
   z-index: 1;
   font-family: var(--font-jp);
+  font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.3em;
   text-indent: 0.3em;
@@ -1013,6 +1014,27 @@ button {
   .tab:hover { opacity: 0.85; }
   .tab.active:hover, .tab.fatten:hover { opacity: 1; }
   .tab.fatten:hover .bubble { transform: scale(1.08); }
+}
+
+/* ============================================================
+   Japanese mode. Dela Gothic One mushes kanji together at UI sizes,
+   so swap the display font for the cleaner Zen Kaku Gothic New and
+   keep headings bold. (UI/body already use Zen/Inter→Noto.)
+   ============================================================ */
+
+html[lang="ja"] { --font-display: "Zen Kaku Gothic New", "Noto Sans JP", sans-serif; }
+
+html[lang="ja"] .section-title,
+html[lang="ja"] .btn,
+html[lang="ja"] .mode,
+html[lang="ja"] .dz-title,
+html[lang="ja"] .loading-caption,
+html[lang="ja"] .countdown,
+html[lang="ja"] .tap-hint,
+html[lang="ja"] .display,
+html[lang="ja"] .notify label,
+html[lang="ja"] .video-card .label {
+  font-weight: 900;
 }
 
 /* ---------- reduced motion ---------- */
