@@ -117,8 +117,8 @@ function applyStatic() {
 }
 
 function paintToggle() {
-  const btn = document.getElementById("lang-toggle");
-  if (btn) btn.textContent = lang === "en" ? "日本語" : "EN";
+  const label = lang === "en" ? "日本語" : "EN";
+  document.querySelectorAll(".lang-toggle").forEach((btn) => { btn.textContent = label; });
 }
 
 export function setLang(next) {
@@ -132,8 +132,9 @@ export function setLang(next) {
 function init() {
   applyStatic();
   paintToggle();
-  const btn = document.getElementById("lang-toggle");
-  if (btn) btn.addEventListener("click", () => setLang(lang === "en" ? "ja" : "en"));
+  document.querySelectorAll(".lang-toggle").forEach((btn) => {
+    btn.addEventListener("click", () => setLang(lang === "en" ? "ja" : "en"));
+  });
 }
 
 if (document.readyState === "loading") {

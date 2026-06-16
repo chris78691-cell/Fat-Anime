@@ -1030,67 +1030,128 @@ button {
   100% { transform: translateY(104vh) translateX(-12px) rotate(360deg); }
 }
 
+/* desktop top nav + footer are hidden on mobile (mobile keeps the phone
+   column + bottom tab bar, untouched) */
+.topnav, .site-footer { display: none; }
+
 /* ============================================================
-   Desktop / tablet dressing. The phone column IS the app — on
-   bigger screens it floats as a phone-shaped sticker over a
-   sunburst sheet. Nothing in here touches viewports < 768px.
+   Desktop / tablet (>=768px): full-width web layout — sticky top nav,
+   wide content, footer with socials. Replaces the mobile phone-frame
+   entirely. Nothing below 768px is affected.
    ============================================================ */
 
 @media (min-width: 768px) {
-  /* Desktop: sharp wide key-art fills the viewport (crisp sides, no blur,
-     no overlay) — the frosted panel handles the centre + readability. */
+  /* wide key-art as the page background, darkened so full-width content reads */
   .skybg {
-    background-image: url("/assets/hero-art-wide.webp");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-image:
+      linear-gradient(180deg, rgba(12,11,20,0.80) 0%, rgba(12,11,20,0.66) 32%, rgba(12,11,20,0.84) 100%),
+      url("/assets/hero-art-wide.webp");
+    background-size: cover, cover;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
   }
 
-  /* Frosted panel: slightly larger than the phone, centred behind it. */
-  .stage-panel {
-    display: block;
-    position: fixed;
-    z-index: 1;
-    top: 8px;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 524px;
-    max-width: calc(100vw - 24px);
-    border-radius: 46px;
-    border: 2px solid rgba(255, 255, 255, 0.22);
-    background: rgba(12, 11, 20, 0.38);
-    backdrop-filter: blur(26px) saturate(1.05);
-    -webkit-backdrop-filter: blur(26px) saturate(1.05);
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
-    pointer-events: none;
-  }
+  /* drop all the mobile chrome */
+  .tabbar,
+  .topbar,
+  .brand,
+  .stage-panel { display: none; }
 
-  /* The phone frame is transparent — the frosted panel shows through it,
-     giving the in-app content its blurred, dark, readable backdrop. */
+  /* sticky top navigation */
+  .topnav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    padding: 12px clamp(20px, 4vw, 48px);
+    background: rgba(12, 11, 20, 0.72);
+    backdrop-filter: blur(18px) saturate(1.1);
+    -webkit-backdrop-filter: blur(18px) saturate(1.1);
+    border-bottom: 1px solid var(--line);
+  }
+  .topnav-logo {
+    font-family: var(--font-brand);
+    font-size: 30px;
+    color: var(--pink);
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.5);
+  }
+  .topnav-links { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+  .topnav-link {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    padding: 9px 14px;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+  }
+  .topnav-link:hover { color: var(--ink); }
+  .topnav-link.active { color: var(--pink-ink); }
+  .topnav-link.cta {
+    color: var(--ink);
+    background: var(--surface-2);
+    border-color: var(--line-strong);
+    border-left: 3px solid var(--pink);
+  }
+  .topnav-link.cta:hover { border-color: var(--pink); }
+  .topnav .lang-toggle { font-size: 12px; padding: 7px 12px; }
+
+  /* full-width content column */
   .app {
-    background: transparent;
-    margin: 28px auto;
-    height: calc(100dvh - 56px);
-    min-height: calc(100dvh - 56px); /* beat the base min-height: 100dvh */
-    overflow-x: hidden;
-    overflow-y: auto;
-    scrollbar-width: none;
-    border: var(--border);
-    border-radius: 36px;
-    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.5);
+    max-width: 1180px;
+    width: 100%;
+    margin: 0 auto;
+    min-height: auto;
+    padding: 30px clamp(20px, 4vw, 48px) 70px;
   }
 
-  .app::-webkit-scrollbar { display: none; }
+  /* gallery: centred intro (hero + CTA) above a wide multi-column grid */
+  #view-gallery .hero { max-width: 760px; margin: 4px auto 0; }
+  .hero-cta { max-width: 560px; margin: 18px auto 0 !important; }
+  .chips { justify-content: center; flex-wrap: wrap; overflow: visible; max-width: 920px; margin: 0 auto; }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
 
-  /* tab bar docks onto the frame's bottom edge */
-  .tabbar {
-    bottom: 28px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 0 0 33px 33px;
+  /* videos: multi-column */
+  #view-videos { max-width: 1100px; margin: 0 auto; }
+  .video-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 22px; }
+
+  /* requests + generator: comfortable centred column */
+  #view-requests, #view-generate { max-width: 600px; margin: 0 auto; }
+
+  /* footer with social links */
+  .site-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    padding: 28px clamp(20px, 4vw, 48px) 36px;
+    border-top: 1px solid var(--line);
+    background: rgba(12, 11, 20, 0.72);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    position: relative;
+    z-index: 1;
   }
+  .footer-brand { font-family: var(--font-brand); font-size: 22px; color: var(--pink); }
+  .socials { display: flex; gap: 22px; }
+  .socials a {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--ink-dim); text-decoration: none;
+    font-family: var(--font-display); font-weight: 500; font-size: 13px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    transition: color 0.2s var(--ease);
+  }
+  .socials a:hover { color: var(--pink-ink); }
+  .socials svg { width: 18px; height: 18px; }
+  .footer-copy { font-family: var(--font-body); font-size: 12px; color: var(--ink-faint); }
 
-  .toast { bottom: calc(var(--tabbar-h) + 44px); }
+  .toast { bottom: 28px; }
 }
 
 /* mouse users get a subtle lift; touch devices never match this */

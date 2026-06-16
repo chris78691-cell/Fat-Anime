@@ -136,14 +136,6 @@
     "after": "/assets/presets/frieren-after.webp"
   },
   {
-    "slug": "edward-elric",
-    "character": "Edward Elric",
-    "series": "Fullmetal Alchemist",
-    "punTitle": "",
-    "before": "/assets/presets/edward-elric-before.webp",
-    "after": "/assets/presets/edward-elric-after.webp"
-  },
-  {
     "slug": "asuka",
     "character": "Asuka Langley",
     "series": "Evangelion",
@@ -166,14 +158,6 @@
     "punTitle": "",
     "before": "/assets/presets/killua-before.webp",
     "after": "/assets/presets/killua-after.webp"
-  },
-  {
-    "slug": "jotaro",
-    "character": "Jotaro Kujo",
-    "series": "JoJo's Bizarre Adventure",
-    "punTitle": "",
-    "before": "/assets/presets/jotaro-before.webp",
-    "after": "/assets/presets/jotaro-after.webp"
   },
   {
     "slug": "gojo",
@@ -302,14 +286,6 @@
     "punTitle": "",
     "before": "/assets/presets/rem-before.webp",
     "after": "/assets/presets/rem-after.webp"
-  },
-  {
-    "slug": "subaru",
-    "character": "Subaru Natsuki",
-    "series": "Re:Zero",
-    "punTitle": "",
-    "before": "/assets/presets/subaru-before.webp",
-    "after": "/assets/presets/subaru-after.webp"
   },
   {
     "slug": "usagi",

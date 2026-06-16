@@ -20,7 +20,8 @@ const views = { gallery: "#view-gallery", videos: "#view-videos", generate: "#vi
 
 function switchTab(name) {
   for (const [tab, sel] of Object.entries(views)) $(sel).hidden = tab !== name;
-  document.querySelectorAll(".tab").forEach((b) => b.classList.toggle("active", b.dataset.tab === name));
+  // sync active state on both the mobile tab bar and the desktop top nav
+  document.querySelectorAll(".tab, .topnav-link").forEach((b) => b.classList.toggle("active", b.dataset.tab === name));
   window.scrollTo({ top: 0 });
   $(".app").scrollTop = 0; // desktop: the app column scrolls internally
   document.dispatchEvent(new CustomEvent("tabchange", { detail: name }));
