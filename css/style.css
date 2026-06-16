@@ -90,6 +90,18 @@ body {
 
 img { display: block; max-width: 100%; }
 
+/* themed scrollbar (pink thumb on a faint dark track) */
+html { scrollbar-width: thin; scrollbar-color: rgba(255, 77, 135, 0.6) rgba(255, 255, 255, 0.05); }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.04); }
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 77, 135, 0.55);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 77, 135, 0.85); }
+
 button {
   font: inherit;
   color: inherit;
@@ -1041,6 +1053,10 @@ button {
    ============================================================ */
 
 @media (min-width: 768px) {
+  /* sticky-footer column: nav, content (grows), footer pinned to bottom.
+     Fixed layers (skybg, petals, modal, loading) are out of flow. */
+  body { display: flex; flex-direction: column; min-height: 100dvh; }
+
   /* wide key-art as the page background, darkened so full-width content reads */
   .skybg {
     background-image:
@@ -1101,11 +1117,13 @@ button {
   .topnav-link.cta:hover { border-color: var(--pink); }
   .topnav .lang-toggle { font-size: 12px; padding: 7px 12px; }
 
-  /* full-width content column */
+  /* full-width content column; grows to push the footer to the bottom */
   .app {
     max-width: 1180px;
     width: 100%;
     margin: 0 auto;
+    align-self: center;
+    flex: 1 0 auto;
     min-height: auto;
     padding: 30px clamp(20px, 4vw, 48px) 70px;
   }
