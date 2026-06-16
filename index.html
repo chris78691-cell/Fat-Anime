@@ -26,6 +26,12 @@
 
   <link rel="preload" as="image" href="/assets/hero-art.webp">
   <link rel="stylesheet" href="/css/style.css">
+  
+  <!-- Vercel Web Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
 </head>
 <body>
   <!-- intro reveal: the full key visual for a beat, then it fades to the
@@ -290,13 +296,5 @@
   <script src="/js/app.js" type="module"></script>
   <script src="/js/generator.js" type="module"></script>
   <script src="/js/requests.js" type="module"></script>
-
-  <!-- Vercel Web Analytics. The script is served by Vercel's edge at runtime
-       (it 404s locally / on non-Vercel hosts, which is harmless). This is the
-       no-build static-site integration — the same script @vercel/analytics
-       injects in framework apps. Page views, incl. client-side tab changes,
-       are tracked automatically. Requires Web Analytics enabled for the
-       project in the Vercel dashboard (Project -> Analytics -> Enable). -->
-  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
