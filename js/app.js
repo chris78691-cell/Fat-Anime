@@ -118,8 +118,14 @@ export function getPresets() { return presets; }
 
 export function openDetail(p) {
   current = p;
-  $("#stage-before").src = p.before;
-  $("#stage-after").src = p.after;
+  // Drop the previous frame BEFORE assigning the new one. Just reassigning .src
+  // keeps the old (already-decoded) image painted until the new file loads, which
+  // is why the last-opened character used to flash in for a moment.
+  const beforeImg = $("#stage-before"), afterImg = $("#stage-after");
+  beforeImg.removeAttribute("src");
+  afterImg.removeAttribute("src");
+  beforeImg.src = p.before;
+  afterImg.src = p.after;
   $("#detail-name").textContent = p.punTitle || p.character;
   $("#detail-series").textContent = p.series;
   $("#stage").classList.remove("fat");
