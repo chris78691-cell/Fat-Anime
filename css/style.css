@@ -78,6 +78,7 @@ body {
   position: fixed;
   inset: 0;
   z-index: 0;
+  pointer-events: none;   /* purely decorative — never capture scroll/clicks */
   background-color: #14121c;
   /* the key visual, pre-blurred + darkened: present but not shouting */
   background-image:
@@ -1053,10 +1054,6 @@ button {
    ============================================================ */
 
 @media (min-width: 768px) {
-  /* sticky-footer column: nav, content (grows), footer pinned to bottom.
-     Fixed layers (skybg, petals, modal, loading) are out of flow. */
-  body { display: flex; flex-direction: column; min-height: 100dvh; }
-
   /* wide key-art as the page background, darkened so full-width content reads */
   .skybg {
     background-image:
@@ -1122,10 +1119,8 @@ button {
     max-width: 1180px;
     width: 100%;
     margin: 0 auto;
-    align-self: center;
-    flex: 1 0 auto;
     min-height: auto;
-    padding: 30px clamp(20px, 4vw, 48px) 70px;
+    padding: 30px clamp(20px, 4vw, 48px) 104px;   /* bottom clears the fixed footer bar */
   }
 
   /* gallery: centred intro (hero + CTA) above a wide multi-column grid */
@@ -1141,20 +1136,23 @@ button {
   /* requests + generator: comfortable centred column */
   #view-requests, #view-generate { max-width: 600px; margin: 0 auto; }
 
-  /* footer with social links */
+  /* footer = fixed bar pinned to the bottom of the screen at all times */
   .site-footer {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 28px;
     flex-wrap: wrap;
-    padding: 28px clamp(20px, 4vw, 48px) 36px;
+    padding: 12px clamp(20px, 4vw, 48px);
     border-top: 1px solid var(--line);
-    background: rgba(12, 11, 20, 0.72);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    position: relative;
-    z-index: 1;
+    background: rgba(12, 11, 20, 0.86);
+    backdrop-filter: blur(18px) saturate(1.1);
+    -webkit-backdrop-filter: blur(18px) saturate(1.1);
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
   }
   .footer-brand { font-family: var(--font-brand); font-size: 22px; color: var(--pink); }
   .socials { display: flex; gap: 22px; }
