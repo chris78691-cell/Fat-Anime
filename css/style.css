@@ -630,6 +630,13 @@ button {
   transition: transform 0.2s var(--ease);
 }
 
+/* the anime-styled burger glyph on the primary disc (overrides the 24px .tab svg) */
+.tab.fatten .bubble .burger-icon {
+  width: 40px;
+  height: 40px;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35));
+}
+
 .tab.fatten:active .bubble { transform: scale(0.97); }
 .tab.fatten.active .bubble { transform: scale(1.04); }
 

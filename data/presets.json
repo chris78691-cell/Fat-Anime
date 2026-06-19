@@ -4,8 +4,8 @@
     "character": "Eren Yeager",
     "series": "Attack on Titan",
     "punTitle": "",
-    "before": "/assets/presets/eren-before.webp?v=2",
-    "after": "/assets/presets/eren-after.webp?v=2"
+    "before": "/assets/presets/eren-before.webp?v=3",
+    "after": "/assets/presets/eren-after.webp?v=3"
   },
   {
     "slug": "levi",
@@ -20,8 +20,8 @@
     "character": "Mikasa Ackerman",
     "series": "Attack on Titan",
     "punTitle": "",
-    "before": "/assets/presets/mikasa-before.webp?v=2",
-    "after": "/assets/presets/mikasa-after.webp?v=2"
+    "before": "/assets/presets/mikasa-before.webp?v=3",
+    "after": "/assets/presets/mikasa-after.webp?v=3"
   },
   {
     "slug": "ichigo",
@@ -52,16 +52,16 @@
     "character": "Power",
     "series": "Chainsaw Man",
     "punTitle": "",
-    "before": "/assets/presets/power-before.webp?v=2",
-    "after": "/assets/presets/power-after.webp?v=2"
+    "before": "/assets/presets/power-before.webp?v=3",
+    "after": "/assets/presets/power-after.webp?v=3"
   },
   {
     "slug": "spike",
     "character": "Spike Spiegel",
     "series": "Cowboy Bebop",
     "punTitle": "",
-    "before": "/assets/presets/spike-before.webp?v=2",
-    "after": "/assets/presets/spike-after.webp?v=2"
+    "before": "/assets/presets/spike-before.webp?v=3",
+    "after": "/assets/presets/spike-after.webp?v=3"
   },
   {
     "slug": "l",
@@ -76,8 +76,8 @@
     "character": "Light Yagami",
     "series": "Death Note",
     "punTitle": "",
-    "before": "/assets/presets/light-before.webp?v=2",
-    "after": "/assets/presets/light-after.webp?v=2"
+    "before": "/assets/presets/light-before.webp?v=3",
+    "after": "/assets/presets/light-after.webp?v=3"
   },
   {
     "slug": "inosuke",
@@ -92,8 +92,8 @@
     "character": "Nezuko Kamado",
     "series": "Demon Slayer",
     "punTitle": "",
-    "before": "/assets/presets/nezuko-before.webp?v=2",
-    "after": "/assets/presets/nezuko-after.webp?v=2"
+    "before": "/assets/presets/nezuko-before.webp?v=3",
+    "after": "/assets/presets/nezuko-after.webp?v=3"
   },
   {
     "slug": "tanjiro",
@@ -108,8 +108,8 @@
     "character": "Frieza",
     "series": "Dragon Ball",
     "punTitle": "",
-    "before": "/assets/presets/frieza-before.webp?v=2",
-    "after": "/assets/presets/frieza-after.webp?v=2"
+    "before": "/assets/presets/frieza-before.webp?v=3",
+    "after": "/assets/presets/frieza-after.webp?v=3"
   },
   {
     "slug": "goku",
@@ -124,8 +124,8 @@
     "character": "Vegeta",
     "series": "Dragon Ball",
     "punTitle": "",
-    "before": "/assets/presets/vegeta-before.webp?v=2",
-    "after": "/assets/presets/vegeta-after.webp?v=2"
+    "before": "/assets/presets/vegeta-before.webp?v=3",
+    "after": "/assets/presets/vegeta-after.webp?v=3"
   },
   {
     "slug": "frieren",
@@ -160,28 +160,28 @@
     "after": "/assets/presets/killua-after.webp?v=2"
   },
   {
-    "slug": "gojo",
-    "character": "Satoru Gojo",
+    "slug": "higuruma",
+    "character": "Hiromi Higuruma",
     "series": "Jujutsu Kaisen",
     "punTitle": "",
-    "before": "/assets/presets/gojo-before.webp?v=3",
-    "after": "/assets/presets/gojo-after.webp?v=3"
+    "before": "/assets/presets/higuruma-before.webp?v=3",
+    "after": "/assets/presets/higuruma-after.webp?v=3"
   },
   {
     "slug": "megumi",
     "character": "Megumi Fushiguro",
     "series": "Jujutsu Kaisen",
     "punTitle": "",
-    "before": "/assets/presets/megumi-before.webp?v=2",
-    "after": "/assets/presets/megumi-after.webp?v=2"
+    "before": "/assets/presets/megumi-before.webp?v=3",
+    "after": "/assets/presets/megumi-after.webp?v=3"
   },
   {
     "slug": "sukuna",
     "character": "Ryomen Sukuna",
     "series": "Jujutsu Kaisen",
     "punTitle": "",
-    "before": "/assets/presets/sukuna-before.webp?v=2",
-    "after": "/assets/presets/sukuna-after.webp?v=2"
+    "before": "/assets/presets/sukuna-before.webp?v=3",
+    "after": "/assets/presets/sukuna-after.webp?v=3"
   },
   {
     "slug": "yuji",
@@ -196,8 +196,8 @@
     "character": "Katsuki Bakugo",
     "series": "My Hero Academia",
     "punTitle": "",
-    "before": "/assets/presets/bakugo-before.webp?v=2",
-    "after": "/assets/presets/bakugo-after.webp?v=2"
+    "before": "/assets/presets/bakugo-before.webp?v=3",
+    "after": "/assets/presets/bakugo-after.webp?v=3"
   },
   {
     "slug": "deku",
@@ -212,8 +212,8 @@
     "character": "Shoto Todoroki",
     "series": "My Hero Academia",
     "punTitle": "",
-    "before": "/assets/presets/todoroki-before.webp?v=2",
-    "after": "/assets/presets/todoroki-after.webp?v=2"
+    "before": "/assets/presets/todoroki-before.webp?v=3",
+    "after": "/assets/presets/todoroki-after.webp?v=3"
   },
   {
     "slug": "itachi",
@@ -236,16 +236,16 @@
     "character": "Sasuke Uchiha",
     "series": "Naruto",
     "punTitle": "",
-    "before": "/assets/presets/sasuke-before.webp?v=2",
-    "after": "/assets/presets/sasuke-after.webp?v=2"
+    "before": "/assets/presets/sasuke-before.webp?v=3",
+    "after": "/assets/presets/sasuke-after.webp?v=3"
   },
   {
     "slug": "luffy",
     "character": "Monkey D. Luffy",
     "series": "One Piece",
     "punTitle": "",
-    "before": "/assets/presets/luffy-before.webp?v=2",
-    "after": "/assets/presets/luffy-after.webp?v=2"
+    "before": "/assets/presets/luffy-before.webp?v=3",
+    "after": "/assets/presets/luffy-after.webp?v=3"
   },
   {
     "slug": "sanji",
@@ -284,8 +284,8 @@
     "character": "Rem",
     "series": "Re:Zero",
     "punTitle": "",
-    "before": "/assets/presets/rem-before.webp?v=2",
-    "after": "/assets/presets/rem-after.webp?v=2"
+    "before": "/assets/presets/rem-before.webp?v=3",
+    "after": "/assets/presets/rem-after.webp?v=3"
   },
   {
     "slug": "usagi",
@@ -316,8 +316,8 @@
     "character": "Yor Forger",
     "series": "Spy x Family",
     "punTitle": "",
-    "before": "/assets/presets/yor-before.webp?v=2",
-    "after": "/assets/presets/yor-after.webp?v=2"
+    "before": "/assets/presets/yor-before.webp?v=3",
+    "after": "/assets/presets/yor-after.webp?v=3"
   },
   {
     "slug": "kirito",
@@ -348,15 +348,15 @@
     "character": "Roronoa Zoro",
     "series": "One Piece",
     "punTitle": "",
-    "before": "/assets/presets/zoro-before.webp?v=2",
-    "after": "/assets/presets/zoro-after.webp?v=2"
+    "before": "/assets/presets/zoro-before.webp?v=3",
+    "after": "/assets/presets/zoro-after.webp?v=3"
   },
   {
     "slug": "kakashi",
     "character": "Kakashi Hatake",
     "series": "Naruto",
     "punTitle": "",
-    "before": "/assets/presets/kakashi-before.webp?v=2",
-    "after": "/assets/presets/kakashi-after.webp?v=2"
+    "before": "/assets/presets/kakashi-before.webp?v=3",
+    "after": "/assets/presets/kakashi-after.webp?v=3"
   }
 ]
