@@ -7,7 +7,7 @@ const DICT = {
   // home
   cta_make_fat:   { en: "MAKE YOUR ANIME PFP FAT", ja: "アニメアイコンを太らせよう" },
   slots_home:     { en: "of 50 custom fat pfps left today", ja: "/ 50 本日のこり" },
-  sec_fattened:   { en: "THE FATTENED", ja: "ファット殿堂" },
+  sec_fattened:   { en: "FAT FRAMES", ja: "ファットフレーム" },
 
   // generator
   of:             { en: "of", ja: "/" },

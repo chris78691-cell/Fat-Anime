@@ -630,11 +630,13 @@ button {
   transition: transform 0.2s var(--ease);
 }
 
-/* the anime-styled burger glyph on the primary disc (overrides the 24px .tab svg) */
-.tab.fatten .bubble .burger-icon {
-  width: 40px;
-  height: 40px;
-  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35));
+/* fat default-pfp outline filling the primary disc (overrides the 24px .tab svg);
+   overflow:hidden clips the wide body to the disc, avatar-style */
+.tab.fatten .bubble { overflow: hidden; }
+.tab.fatten .bubble .fatten-icon {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .tab.fatten:active .bubble { transform: scale(0.97); }
@@ -1133,11 +1135,10 @@ button {
     padding: 30px clamp(20px, 4vw, 48px) 104px;   /* bottom clears the fixed footer bar */
   }
 
-  /* desktop gallery = just the photos (hero video + CTA only show on mobile;
-     "Fatten your PFP" lives in the top nav) */
-  #view-gallery .hero,
-  #view-gallery .hero-cta { display: none !important; }   /* !important beats the inline style on .hero-cta */
-  #view-gallery .section-title:first-of-type { margin-top: 8px; }
+  /* desktop lands on the video tapes; the hero video + CTA only show on mobile
+     ("Fatten your PFP" lives in the top nav) */
+  #view-videos .hero,
+  #view-videos .hero-cta { display: none !important; }   /* !important beats the inline style on .hero-cta */
   .chips { justify-content: center; flex-wrap: wrap; overflow: visible; max-width: 920px; margin: 0 auto; }
   .grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
 

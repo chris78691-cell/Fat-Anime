@@ -55,7 +55,8 @@ function initHero() {
 /* ---------------- videos tab: one tape at a time ---------------- */
 
 function initVideos() {
-  const vids = document.querySelectorAll("#view-videos video");
+  // only the tape cards — the hero video (also inside #view-videos) is left to autoplay
+  const vids = document.querySelectorAll("#view-videos .video-card video");
   vids.forEach((v) => {
     v.addEventListener("play", () => vids.forEach((o) => { if (o !== v) o.pause(); }));
   });
