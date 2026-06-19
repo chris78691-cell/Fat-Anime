@@ -70,7 +70,7 @@ export default async function handler(req, res) {
   }
   if (remaining === -1) {
     await refundUser(db, day, userId);
-    return fail(res, 410, "all 50 fattenings eaten today 🍔", { soldOut: true });
+    return fail(res, 410, `all ${GENERATION.DAILY_LIMIT} fattenings eaten today 🍔`, { soldOut: true });
   }
 
   // ---- the fattening ----

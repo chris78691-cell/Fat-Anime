@@ -190,12 +190,38 @@ button {
 /* language toggle */
 .topbar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;   /* CA on the left, language toggle on the right */
   align-items: center;
+  gap: 10px;
   padding-top: 8px;
   position: relative;
   z-index: 6;
 }
+
+/* coin contract-address pill (tap to copy) — top nav on desktop, topbar on mobile */
+.ca-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink-dim);
+  padding: 7px 12px;
+  border: var(--border);
+  border-radius: 999px;
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.ca-pill .ca-label { font-weight: 600; letter-spacing: 0.1em; color: var(--pink-ink); }
+.ca-pill .ca-addr { font-family: var(--font-body); letter-spacing: 0.02em; }
+.ca-pill .ca-copy { width: 13px; height: 13px; opacity: 0.65; }
+.ca-pill:hover { color: var(--ink); border-color: var(--line-strong); }
+.ca-pill.copied { border-color: var(--pink); color: var(--ink); }
+.ca-pill.copied .ca-copy { opacity: 1; color: var(--pink-ink); }
 
 .lang-toggle {
   font-family: var(--font-jp);

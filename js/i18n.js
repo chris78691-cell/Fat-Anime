@@ -6,7 +6,7 @@
 const DICT = {
   // home
   cta_make_fat:   { en: "MAKE YOUR ANIME PFP FAT", ja: "アニメアイコンを太らせよう" },
-  slots_home:     { en: "of 50 custom fat pfps left today", ja: "/ 50 本日のこり" },
+  slots_home:     { en: "of 150 custom fat pfps left today", ja: "/ 150 本日のこり" },
   sec_fattened:   { en: "FAT FRAMES", ja: "ファットフレーム" },
 
   // generator
@@ -26,7 +26,7 @@ const DICT = {
   fatten_another: { en: "FATTEN ANOTHER", ja: "もう一枚太らせる" },
 
   // sold out
-  soldout_title:  { en: "ALL 50 FATTENINGS EATEN TODAY", ja: "本日の50枚は完食！" },
+  soldout_title:  { en: "ALL 150 FATTENINGS EATEN TODAY", ja: "本日の150枚は完食！" },
   soldout_sub:    { en: "the kitchen restocks at midnight UK time", ja: "イギリス時間の深夜0時に補充されます" },
   notify_label:   { en: "GET PINGED WHEN SLOTS OPEN", ja: "空きが出たら通知する" },
   ping_me:        { en: "PING ME", ja: "通知して" },
@@ -80,6 +80,8 @@ const DICT = {
   toast_toobig:      { en: "too thicc already — 10MB max", ja: "すでに重すぎ — 最大10MB" },
   toast_generic_fail:{ en: "something broke. the site ate too much. try again.", ja: "なにか壊れました。食べ過ぎたみたい。もう一度。" },
   toast_saved:       { en: "saved! now go post it 📮", ja: "保存完了！さあ投稿しよう 📮" },
+  toast_ca_copied:   { en: "contract address copied 📋", ja: "コントラクトアドレスをコピーしました 📋" },
+  toast_ca_fail:     { en: "couldn't copy — long-press to copy", ja: "コピーできませんでした — 長押しでコピー" },
   toast_noname:      { en: "who? give us a name!", ja: "誰？名前を教えて！" },
   toast_req_sent:    { en: "request fed to the kitchen 👨‍🍳", ja: "リクエストを厨房に送りました 👨‍🍳" },
   toast_req_fail:    { en: "couldn't save that. try again.", ja: "保存できませんでした。もう一度。" },

@@ -32,6 +32,40 @@ function initTabs() {
   document.querySelectorAll("[data-goto]").forEach((b) => b.addEventListener("click", () => switchTab(b.dataset.goto)));
 }
 
+/* ---------------- coin contract address: tap to copy ---------------- */
+
+function initCA() {
+  document.querySelectorAll(".ca-pill").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const ca = btn.dataset.ca || "";
+      let ok = false;
+      try {
+        await navigator.clipboard.writeText(ca);
+        ok = true;
+      } catch {
+        // fallback for browsers / non-secure contexts without the async clipboard API
+        const ta = document.createElement("textarea");
+        ta.value = ca;
+        ta.style.position = "fixed";
+        ta.style.top = "-9999px";
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try { ok = document.execCommand("copy"); } catch { /* give up */ }
+        ta.remove();
+      }
+      if (ok) {
+        // reflect on every CA pill (desktop + mobile share the value)
+        document.querySelectorAll(".ca-pill").forEach((p) => p.classList.add("copied"));
+        setTimeout(() => document.querySelectorAll(".ca-pill").forEach((p) => p.classList.remove("copied")), 1200);
+        toast(t("toast_ca_copied"));
+      } else {
+        toast(t("toast_ca_fail"));
+      }
+    });
+  });
+}
+
 /* ---------------- hero: a random brand video each visit ---------------- */
 
 const HERO_VIDEOS = [
@@ -280,6 +314,7 @@ function initIntro() {
 (async function boot() {
   initIntro();
   initTabs();
+  initCA();
   initHero();
   initVideos();
   try {
