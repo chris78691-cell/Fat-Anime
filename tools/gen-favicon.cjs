@@ -4,7 +4,7 @@
 const sharp = require("sharp");
 
 const SRC = "assets/presets/frieren-after.webp"; // fat Frieren (gallery "after")
-const CROP = { left: 85, top: 10, width: 400, height: 400 }; // square centred on her face
+const CROP = { left: 115, top: 25, width: 400, height: 400 }; // square centred on her face (~x315,y225)
 
 (async () => {
   const sizes = [32, 192];

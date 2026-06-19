@@ -20,7 +20,7 @@ const DICT = {
   dz_sub:         { en: "your anime pic · jpg / png / webp · max 10MB", ja: "アニメ画像 · jpg / png / webp · 最大10MB" },
   change_pic:     { en: "CHANGE PIC", ja: "画像を変える" },
   fatten_it:      { en: "FATTEN IT", ja: "太らせる" },
-  fineprint:      { en: "uploads are fattened in memory and never stored", ja: "アップロード画像は保存されず、処理後すぐ破棄されます" },
+  fineprint:      { en: "uploads are not stored", ja: "アップロード画像は保存されません" },
   share:          { en: "SHARE", ja: "シェア" },
   save:           { en: "SAVE", ja: "保存" },
   fatten_another: { en: "FATTEN ANOTHER", ja: "もう一枚太らせる" },
