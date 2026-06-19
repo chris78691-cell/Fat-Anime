@@ -1,15 +1,15 @@
-// Generate the circular fat-Frieren favicon from the gallery image.
-// Circular (transparent corners) so Google's round favicon slot shows no
-// blank border. Re-run after changing the source: node tools/gen-favicon.cjs
+// Generate the circular fat-Frieren favicon. The source (assets/favicon-src.png)
+// is already a square framed on her face per the approved reference, so we just
+// circular-mask it. Circular (transparent corners) so Google's round favicon
+// slot shows no blank border. Re-run after changing the source: node tools/gen-favicon.cjs
 const sharp = require("sharp");
 
-const SRC = "assets/presets/frieren-after.webp"; // fat Frieren (gallery "after")
-const CROP = { left: 115, top: 25, width: 400, height: 400 }; // square centred on her face (~x315,y225)
+const SRC = "assets/favicon-src.png"; // square already centred on her face
 
 (async () => {
   const sizes = [32, 192];
   for (const size of sizes) {
-    const base = await sharp(SRC).extract(CROP).resize(size, size).ensureAlpha().toBuffer();
+    const base = await sharp(SRC).resize(size, size).ensureAlpha().toBuffer();
     const mask = Buffer.from(
       `<svg width="${size}" height="${size}"><circle cx="${size / 2}" cy="${size / 2}" r="${size / 2}" fill="#fff"/></svg>`
     );
