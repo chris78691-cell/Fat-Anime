@@ -630,12 +630,13 @@ button {
   transition: transform 0.2s var(--ease);
 }
 
-/* fat default-pfp outline filling the primary disc (overrides the 24px .tab svg);
-   overflow:hidden clips the wide body to the disc, avatar-style */
+/* the attached fat default-pfp template, clipped to the primary disc */
 .tab.fatten .bubble { overflow: hidden; }
-.tab.fatten .bubble .fatten-icon {
+.tab.fatten .bubble .fatten-pfp {
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  transform: scale(1.06);   /* over-cover so no dark edge shows at the rim */
   display: block;
 }
 
@@ -828,7 +829,8 @@ button {
 }
 
 .video-card .label {
-  font-family: var(--font-display);
+  font-family: var(--font-brand);   /* match the gallery character names */
+  font-weight: 400;
   font-size: 15px;
   padding: 9px 12px;
   border-top: var(--border);
