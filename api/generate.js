@@ -115,14 +115,16 @@ async function finalize(buf, mode) {
 
   if (GENERATION.WATERMARK) {
     const { width, height } = await sharp(working).metadata();
-    // bar is 1600x120 → scale to image width, sits flush on the bottom edge
-    const barH = Math.max(28, Math.round((width * 120) / 1600));
-    const bar = await sharp(Buffer.from(WATERMARK_PNG_BASE64, "base64"))
-      .resize(width, barH)
+    // "FATANIME" brushmark: ~44% of the width, centred, raised ~6% off the
+    // bottom so a quick bottom-edge crop can't remove it.
+    const markW = Math.round(width * 0.44);
+    const mark = await sharp(Buffer.from(WATERMARK_PNG_BASE64, "base64"))
+      .resize({ width: markW })
       .png()
       .toBuffer();
+    const { height: markH } = await sharp(mark).metadata();
     working = await sharp(working)
-      .composite([{ input: bar, top: height - barH, left: 0 }])
+      .composite([{ input: mark, left: Math.round((width - markW) / 2), top: height - markH - Math.round(height * 0.06) }])
       .toBuffer();
   }
 
