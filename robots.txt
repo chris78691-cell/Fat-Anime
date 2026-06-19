@@ -1,0 +1,5 @@
+# https://fatanime.io
+User-agent: *
+Allow: /
+
+Sitemap: https://fatanime.io/sitemap.xml
