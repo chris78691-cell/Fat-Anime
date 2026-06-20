@@ -81,7 +81,7 @@ function render() {
       <span class="request-rank">${i + 1}</span>
       <div class="request-text"></div>
       <button class="vote-btn squish ${voted ? "voted" : ""}" aria-label="toggle vote" aria-pressed="${voted}">
-        🍙 <span class="count">${r.votes}</span>
+        🍣 <span class="count">${r.votes}</span>
       </button>`;
     card.querySelector(".request-text").textContent = r.english;
     card.querySelector(".vote-btn").addEventListener("click", (e) => vote(r, e.currentTarget));
