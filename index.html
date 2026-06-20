@@ -57,6 +57,7 @@
       <button class="topnav-link" data-tab="gallery"><span data-i18n="tab_gallery">GALLERY</span></button>
       <button class="topnav-link cta" data-tab="generate"><span data-i18n="tab_fatten">FATTEN YOUR PFP</span></button>
       <button class="topnav-link" data-tab="requests"><span data-i18n="tab_requests">REQUESTS</span></button>
+      <button class="topnav-link" data-tab="about"><span data-i18n="tab_about">ABOUT</span></button>
     </nav>
     <button class="lang-toggle squish" type="button" aria-label="Switch language">日本語</button>
   </header>
@@ -64,12 +65,20 @@
   <div class="app">
 
     <div class="topbar">
+      <button class="menu-btn squish" id="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu-panel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
       <button class="ca-pill" type="button" data-ca="452XLzbH756BSF88z3zYVx3q7ztcSzKuJ7bbuRRepump" aria-label="Copy contract address" title="Copy contract address">
         <span class="ca-label">CA</span>
         <span class="ca-addr">452XLz…pump</span>
         <svg class="ca-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
       </button>
       <button class="lang-toggle squish" id="lang-toggle" type="button" aria-label="日本語に切り替え / Switch language">日本語</button>
+
+      <!-- mobile slide-down menu (desktop uses the top nav) -->
+      <nav class="menu-panel" id="menu-panel" aria-label="More sections" hidden>
+        <button class="menu-item" data-tab="about"><span data-i18n="tab_about">ABOUT</span></button>
+      </nav>
     </div>
 
     <div class="brand">
@@ -197,10 +206,14 @@
     <section id="view-requests" class="view" hidden>
       <h2 class="section-title" style="margin-top:18px;" data-i18n="sec_requests">WHO EATS NEXT? 🍴</h2>
 
-      <form class="request-form sticker" id="request-form">
-        <input type="text" id="request-input" maxlength="80" required
-               placeholder="who gets fattened next?" data-i18n-ph="req_ph"
-               autocomplete="off" enterkeyhint="send">
+      <form class="request-form sticker" id="request-form" autocomplete="off">
+        <div class="ac-wrap">
+          <input type="text" id="request-input" maxlength="80" required
+                 placeholder="search an anime…" data-i18n-ph="req_ph"
+                 autocomplete="off" enterkeyhint="search"
+                 role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="ac-list">
+          <ul class="ac-list" id="ac-list" role="listbox" hidden></ul>
+        </div>
         <button class="btn" type="submit" data-i18n="feed">FEED 🍴</button>
       </form>
 
@@ -217,6 +230,15 @@
         <h2 data-i18n="err_title">THE BOARD FELL OVER</h2>
         <p data-i18n="err_sub">too many requests in its arms. probably.</p>
         <button class="btn orange" id="requests-retry" style="margin-top:14px;" data-i18n="try_again">TRY AGAIN 🔄</button>
+      </div>
+    </section>
+
+    <!-- =================== ABOUT =================== -->
+    <section id="view-about" class="view" hidden>
+      <h2 class="section-title" style="margin-top:18px;" data-i18n="tab_about">ABOUT</h2>
+      <div class="about sticker">
+        <p class="about-copy">We are on a mission to make every single Anime FAT. To show your support and spread the FAT cult, pick a PFP from the <a class="ilink" data-goto="gallery">gallery</a> or make your own custom PFP with our <a class="ilink" data-goto="generate">generator</a>. You can request and vote for which Anime we should make next in the <a class="ilink" data-goto="requests">REQUEST</a> section. We have a <a class="elink" href="https://www.tiktok.com/@fatanime_" target="_blank" rel="noopener">TikTok</a>, <a class="elink" href="https://www.instagram.com/fatanime__" target="_blank" rel="noopener">Instagram</a> and <a class="elink" href="https://x.com/phatanime_" target="_blank" rel="noopener">X</a> page as well as an X community. We have a Solana token, <a class="elink" href="https://pump.fun/coin/452XLzbH756BSF88z3zYVx3q7ztcSzKuJ7bbuRRepump" target="_blank" rel="noopener">$FATANIME</a>, launched on pumpfun, where creator fees are being used to make videos and support the project. Keep an eye out for new features on our site! For enquiries please email <a class="elink" href="mailto:fatanimeofficial@gmail.com">fatanimeofficial@gmail.com</a></p>
+        <p class="about-disclaimer">$FATANIME is a memecoin with no intrinsic value. Cryptocurrencies are highly volatile, never invest more than you can afford to lose. This is not financial advice, always do your own research.</p>
       </div>
     </section>
 

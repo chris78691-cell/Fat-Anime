@@ -16,7 +16,7 @@ async function loadPresets() {
 
 /* ---------------- tabs ---------------- */
 
-const views = { gallery: "#view-gallery", videos: "#view-videos", generate: "#view-generate", requests: "#view-requests" };
+const views = { gallery: "#view-gallery", videos: "#view-videos", generate: "#view-generate", requests: "#view-requests", about: "#view-about" };
 
 function switchTab(name) {
   for (const [tab, sel] of Object.entries(views)) $(sel).hidden = tab !== name;
@@ -30,6 +30,25 @@ function switchTab(name) {
 function initTabs() {
   document.querySelectorAll("[data-tab]").forEach((b) => b.addEventListener("click", () => switchTab(b.dataset.tab)));
   document.querySelectorAll("[data-goto]").forEach((b) => b.addEventListener("click", () => switchTab(b.dataset.goto)));
+}
+
+/* ---------------- mobile hamburger menu (desktop uses the top nav) ---------------- */
+
+function initMenu() {
+  const btn = $("#menu-btn"), panel = $("#menu-panel");
+  if (!btn || !panel) return;
+  const close = () => { panel.hidden = true; btn.setAttribute("aria-expanded", "false"); };
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const willOpen = panel.hidden;
+    panel.hidden = !willOpen;
+    btn.setAttribute("aria-expanded", String(willOpen));
+  });
+  // tap outside or change tab → close
+  document.addEventListener("click", (e) => {
+    if (!panel.hidden && !panel.contains(e.target) && e.target !== btn) close();
+  });
+  document.addEventListener("tabchange", close);
 }
 
 /* ---------------- coin contract address: tap to copy ---------------- */
@@ -314,6 +333,7 @@ function initIntro() {
 (async function boot() {
   initIntro();
   initTabs();
+  initMenu();
   initCA();
   initHero();
   initVideos();

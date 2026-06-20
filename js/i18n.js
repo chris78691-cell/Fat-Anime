@@ -37,10 +37,10 @@ const DICT = {
 
   // requests
   sec_requests:   { en: "WHO EATS NEXT?", ja: "次に太らせるのは？" },
-  req_ph:         { en: "who gets fattened next?", ja: "次に太らせるのは誰？" },
+  req_ph:         { en: "search an anime…", ja: "アニメを検索…" },
   feed:           { en: "FEED", ja: "送信" },
   empty_title:    { en: "NOBODY'S HUNGRY YET", ja: "まだ誰もいません" },
-  empty_sub:      { en: "request the first victim. history will remember you.", ja: "最初のリクエストをどうぞ。歴史に名を刻め。" },
+  empty_sub:      { en: "search an anime and request the first one. history will remember you.", ja: "アニメを検索して最初のリクエストを。歴史に名を刻め。" },
   err_title:      { en: "THE BOARD FELL OVER", ja: "ボードが転びました" },
   err_sub:        { en: "too many requests in its arms. probably.", ja: "リクエストを抱えすぎたのかも。" },
   try_again:      { en: "TRY AGAIN", ja: "もう一度" },
@@ -63,6 +63,7 @@ const DICT = {
   tab_fatten:     { en: "FATTEN YOUR PFP", ja: "アイコンを太らせる" },
   tab_requests:   { en: "REQUESTS", ja: "リクエスト" },
   tab_tiktok:     { en: "TIKTOK", ja: "TikTok" },
+  tab_about:      { en: "ABOUT", ja: "概要" },
 
   // loading captions (rotating)
   cap_feeding:    { en: "feeding…", ja: "餌やり中…" },
