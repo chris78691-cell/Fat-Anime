@@ -51,6 +51,20 @@ function initMenu() {
   document.addEventListener("tabchange", close);
 }
 
+/* ---------------- socials popup (mobile tab) ---------------- */
+
+function initSocials() {
+  const tab = $("#socials-tab"), modal = $("#socials-modal");
+  if (!tab || !modal) return;
+  const open = () => { modal.hidden = false; document.body.style.overflow = "hidden"; };
+  const shut = () => { modal.hidden = true; document.body.style.overflow = ""; };
+  tab.addEventListener("click", open);
+  $("#socials-close").addEventListener("click", shut);
+  // tap outside the card (on the backdrop) closes it
+  modal.addEventListener("click", (e) => { if (e.target === modal) shut(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) shut(); });
+}
+
 /* ---------------- coin contract address: tap to copy ---------------- */
 
 function initCA() {
@@ -334,6 +348,7 @@ function initIntro() {
   initIntro();
   initTabs();
   initMenu();
+  initSocials();
   initCA();
   initHero();
   initVideos();

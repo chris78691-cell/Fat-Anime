@@ -64,6 +64,7 @@ const DICT = {
   tab_requests:   { en: "REQUESTS", ja: "リクエスト" },
   tab_tiktok:     { en: "TIKTOK", ja: "TikTok" },
   tab_about:      { en: "ABOUT", ja: "概要" },
+  tab_socials:    { en: "SOCIALS", ja: "SNS" },
 
   // loading captions (rotating)
   cap_feeding:    { en: "feeding…", ja: "餌やり中…" },
