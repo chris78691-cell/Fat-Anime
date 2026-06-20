@@ -33,12 +33,12 @@ const DICT = {
   sec_classics:   { en: "MEANWHILE, THE CLASSICS", ja: "そのあいだに、定番をどうぞ" },
 
   // videos
-  sec_videos:     { en: "THE FEEDING TAPES", ja: "もぐもぐ劇場" },
+  sec_videos:     { en: "FAT VIDEOS", ja: "ファットビデオ" },
 
   // requests
-  sec_requests:   { en: "WHO EATS NEXT?", ja: "次に太らせるのは？" },
+  sec_requests:   { en: "WHICH ANIME DO YOU WANT TO SEE FAT?", ja: "どのアニメを太らせたい？" },
   req_ph:         { en: "search an anime…", ja: "アニメを検索…" },
-  feed:           { en: "FEED", ja: "送信" },
+  feed:           { en: "SUBMIT", ja: "送信" },
   empty_title:    { en: "NOBODY'S HUNGRY YET", ja: "まだ誰もいません" },
   empty_sub:      { en: "search an anime and request the first one. history will remember you.", ja: "アニメを検索して最初のリクエストを。歴史に名を刻め。" },
   err_title:      { en: "THE BOARD FELL OVER", ja: "ボードが転びました" },
