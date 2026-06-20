@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: "Sukajan Brush";
-  src: url("/assets/fonts/sukajan-brush.otf") format("opentype");
+  src: url("/assets/fonts/sukajan-brush.otf?v=2") format("opentype");
   font-display: swap;
 }
 

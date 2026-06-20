@@ -6,7 +6,7 @@ const sharp = require("sharp");
 const fs = require("fs");
 
 const FONT_FILE = "assets/fonts/sukajan-brush.otf";
-const FONT = "Sukajan Brush Demo 160"; // internal family name + size
+const FONT = "Sukajan Brush 160"; // internal family name + size (full font)
 
 function renderText(colorHex) {
   return sharp({
