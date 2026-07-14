@@ -8,7 +8,7 @@ export const GENERATION = {
   IMAGE_SIZE: "1K", // "1K" | "2K" — never 4K
 
   // Limits
-  DAILY_LIMIT: 150, // global fattenings per day (resets midnight Europe/London)
+  DAILY_LIMIT: 100, // global fattenings per day (resets midnight Europe/London)
   PER_USER_LIMIT: 2, // per visitor per day
 
   // Watermark bar composited into the bottom of every generated image.

@@ -6,10 +6,18 @@ const fs = require("fs");
 const ffmpeg = require("ffmpeg-static");
 
 const JOBS = [
-  { src: "One Feast.mp4", slug: "one-feast" },
-  { src: "America Ghoul.mp4", slug: "america-ghoul" },
-  { src: "Jujutsu calories.mp4", slug: "jujutsu-calories" },
-  { src: "Naruto.mp4", slug: "naruto" },
+  { src: "Fatlock.mp4", slug: "fatlock" },
+  { src: "fatland Saga 2.mp4", slug: "fatland-saga-2" },
+  { src: "my heavy acadamia.mp4", slug: "my-heavy-acadamia" },
+  { src: "Calore Zero.mp4", slug: "calore-zero" },
+  { src: "foodmetal alchamist.mp4", slug: "foodmetal-alchamist" },
+  { src: "cyberchud 2.mp4", slug: "cyberchud-2" },
+  { src: "american beserk.mp4", slug: "american-beserk" },
+  { src: "donut slayer.mp4", slug: "donut-slayer" },
+  { src: "chudsmoker cat.mp4", slug: "chudsmoker-cat" },
+  { src: "Jojo's Hungry adventure.mp4", slug: "jojos-hungry-adventure" },
+  { src: "Cyberchud Heavyrunners 3.mp4", slug: "cyberchud-heavyrunners-3" },
+  { src: "Calorie Note.mp4", slug: "calorie-note" },
 ];
 
 // cap the longer side at 1280 (keeps portrait TikTok clips at 720x1280), keep aspect

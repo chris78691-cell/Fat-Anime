@@ -6,7 +6,7 @@
 const DICT = {
   // home
   cta_make_fat:   { en: "MAKE YOUR ANIME PFP FAT", ja: "アニメアイコンを太らせよう" },
-  slots_home:     { en: "of 150 custom fat pfps left today", ja: "/ 150 本日のこり" },
+  slots_home:     { en: "of 100 custom fat pfps left today", ja: "/ 100 本日のこり" },
   sec_fattened:   { en: "FAT FRAMES", ja: "ファットフレーム" },
 
   // generator
@@ -26,7 +26,7 @@ const DICT = {
   fatten_another: { en: "FATTEN ANOTHER", ja: "もう一枚太らせる" },
 
   // sold out
-  soldout_title:  { en: "ALL 150 FATTENINGS EATEN TODAY", ja: "本日の150枚は完食！" },
+  soldout_title:  { en: "ALL 100 FATTENINGS EATEN TODAY", ja: "本日の100枚は完食！" },
   soldout_sub:    { en: "the kitchen restocks at midnight UK time", ja: "イギリス時間の深夜0時に補充されます" },
   notify_label:   { en: "GET PINGED WHEN SLOTS OPEN", ja: "空きが出たら通知する" },
   ping_me:        { en: "PING ME", ja: "通知して" },
